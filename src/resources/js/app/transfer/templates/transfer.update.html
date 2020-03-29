@@ -1,0 +1,62 @@
+<div class="maindialog" style="width: 900px;">
+    <form [formGroup]="transferForm" (ngSubmit)="onSubmit(transferForm.value)">
+        <div mat-dialog-title>
+            <div mat-toolbar>
+                <p i18n>Edit transfer</p>
+            </div>
+        </div>
+        <div mat-dialog-content>
+            <div class="dialog-content">
+<!--
+        <div fxLayout="row" fxLayoutAlign="space-between" >   
+            <div fxFlex="40">
+            </div>
+            <div fxFlex="40">
+            </div>
+        </div>
+-->
+                <mat-form-field>
+                    <label for="user_id">
+                        <span i18n>User_id</span>
+                        <span class="error-message" *ngIf="noValidate('user_id')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="user_id" />
+                </mat-form-field>
+                <mat-form-field>
+                    <label for="hardware_id">
+                        <span i18n>Hardware_id</span>
+                        <span class="error-message" *ngIf="noValidate('hardware_id')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="hardware_id" />
+                </mat-form-field>
+                <mat-form-field>
+                    <label for="type">
+                        <span i18n>Type</span>
+                        <span class="error-message" *ngIf="noValidate('type')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="type" />
+                </mat-form-field>
+                <mat-form-field class="fullwidth">
+                    <label for="date">
+                        <span i18n>Date</span>
+                        <span class="error-message" *ngIf="noValidate('date')"></span>
+                    </label>
+                    <input matInput [matDatepicker]="picker_date" formControlName="date">
+                    <mat-datepicker-toggle matSuffix [for]="picker_date"></mat-datepicker-toggle>
+                    <mat-datepicker #picker_date disabled="false"></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <label for="remarks">
+                        <span i18n>Remarks</span>
+                        <span class="error-message" *ngIf="noValidate('remarks')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="remarks" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" type="button" (click)="cancel()" i18n>Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!transferForm.valid" i18n>Submit</button>
+        </div>
+    </form>
+</div>

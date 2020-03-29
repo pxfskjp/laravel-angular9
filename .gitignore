@@ -1,0 +1,11 @@
+/.env
+/.project
+/.buildpath
+/.settings/*
+/vendor/*
+/src/resources/node_modules/*
+/TelosysTools/*
+/storage/framework/*
+/storage/framework/logs/*
+/bootstrap/cache/*
+/spreadshet.json

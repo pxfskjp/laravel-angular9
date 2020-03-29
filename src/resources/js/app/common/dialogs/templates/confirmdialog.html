@@ -1,0 +1,13 @@
+<div mat-dialog-title>
+    <div mat-toolbar>
+        <p class="dialogtitle" i18n>Confirmation</p>
+        <span flex></span>
+    </div>
+</div>
+<mat-dialog-content>
+    <div class="dialog-content" [innerHTML]="message"></div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="cancel()" i18n>Cancel</button>
+    <button mat-raised-button color="primary" (click)="confirm()" i18n>Confirm</button>
+</mat-dialog-actions>

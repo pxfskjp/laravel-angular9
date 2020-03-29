@@ -1,0 +1,49 @@
+<div class="maintab_bound">
+    <div class="title" i18n>Hardware list</div>
+    <div class="dialog-content">
+        <div class="add-and-search" >
+            <div style="align-self:flex-end;">
+                <button mat-raised-button color="primary" (click)="create()" i18n>Add new hardware</button>
+            </div>
+            <mat-form-field style="width:50%;">
+                <input matInput type="text" i18n-placeholder placeholder="Search" (keyup)="applyFilter($event)"/>
+            </mat-form-field>
+        </div>
+        <div class="dialogtable" [hidden]="hardwareList.filteredData.length == 0">
+            <table mat-table class="maintable" matSort matSortActive="name" matSortDirection="asc" [dataSource]="hardwareList">
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef i18n>Action</th>
+                    <td mat-cell *matCellDef="let hardware" class="nowrap">
+                        <fa-icon [icon]="updateIcon" (click)="edit(hardware)"></fa-icon>
+                        <fa-icon [icon]="deleteIcon" (click)="delete(hardware)"></fa-icon>
+                        <fa-icon [icon]="departureIcon" (click)="lease(hardware)" [hidden]="hardware.user_id"></fa-icon>
+                        <fa-icon [icon]="arrivalIcon" (click)="back(hardware)" [hidden]="!hardware.user_id"></fa-icon>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+                    <td mat-cell *matCellDef="let hardware" class="fullwidth">{{hardware.name}}</td>
+                </ng-container>                
+                <ng-container matColumnDef="system_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>System name</th>
+                    <td mat-cell *matCellDef="let hardware">{{getSystemName(hardware)}}</td>
+                </ng-container>
+                <ng-container matColumnDef="serial_number">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Serial number</th>
+                    <td mat-cell *matCellDef="let hardware">{{hardware.serial_number}}</td>
+                </ng-container>
+                <ng-container matColumnDef="production_year">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Production year</th>
+                    <td mat-cell *matCellDef="let hardware" class="align-right">{{hardware.production_year}}</td>
+                </ng-container>
+                <ng-container matColumnDef="user_fullname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>User fullname </th>
+                    <td mat-cell *matCellDef="let hardware" class="align-center">{{getUserFullname(hardware)}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+

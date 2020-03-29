@@ -1,0 +1,39 @@
+<div class="maintab_bound">
+    <div class="title" i18n>User list</div>
+    <div class="dialog-content">
+        <div class="add-and-search" >
+            <div style="align-self:flex-end;">
+                <button mat-raised-button color="primary" (click)="create()" i18n>Add new user</button>
+            </div>
+            <mat-form-field style="width:50%;">
+                <input matInput type="text" i18n-placeholder placeholder="Search" (keyup)="applyFilter($event)"/>
+            </mat-form-field>
+        </div>
+        <div class="dialogtable" [hidden]="userList.filteredData.length == 0">
+            <table mat-table class="maintable" matSort matSortActive="firstname" matSortDirection="asc" [dataSource]="userList">
+                <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef i18n>Action</th>
+                    <td mat-cell *matCellDef="let user" class="nowrap">
+                        <fa-icon [icon]="updateIcon" (click)="edit(user)"></fa-icon>
+                        <fa-icon [icon]="deleteIcon" (click)="delete(user)"></fa-icon>
+                    </td>
+                </ng-container>
+                <ng-container matColumnDef="firstname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Firstname</th>
+                    <td mat-cell *matCellDef="let user" class="">{{user.firstname}}</td>
+                </ng-container>
+                <ng-container matColumnDef="lastname">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Lastname</th>
+                    <td mat-cell *matCellDef="let user" class="">{{user.lastname}}</td>
+                </ng-container>
+                <ng-container matColumnDef="email">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Email</th>
+                    <td mat-cell *matCellDef="let user" class="fullwidth">{{user.email}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+

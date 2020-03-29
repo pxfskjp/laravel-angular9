@@ -1,0 +1,35 @@
+<div class="maintab_bound">
+    <div class="title" i18n>Transfer list</div>
+    <div class="dialog-content">
+        <div class="add-and-search" >
+            <div style="align-self:flex-end;">
+            </div>
+            <mat-form-field style="width:50%;">
+                <input matInput type="text" i18n-placeholder placeholder="Search" (keyup)="applyFilter($event)"/>
+            </mat-form-field>
+        </div>
+        <div class="dialogtable" [hidden]="transferList.filteredData.length == 0">
+            <table mat-table class="maintable" matSort matSortActive="..." matSortDirection="asc" [dataSource]="transferList">
+                <ng-container matColumnDef="hardware_name">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Hardware name</th>
+                    <td mat-cell *matCellDef="let transfer" class="">{{transfer.hardware_name}}</td>
+                </ng-container>
+                <ng-container matColumnDef="type">
+                    <th mat-header-cell *matHeaderCellDef>Type</th>
+                    <td mat-cell *matCellDef="let transfer" class="nowrap align-center">{{getTransferTypeName(transfer)}}</td>
+                </ng-container>
+                <ng-container matColumnDef="date">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Date</th>
+                    <td mat-cell *matCellDef="let transfer" class="nowrap align-center">{{transfer.date | date:'yyyy-MM-dd'}}</td>
+                </ng-container>
+                <ng-container matColumnDef="remarks">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                    <td mat-cell *matCellDef="let transfer" class="fullwidth">{{transfer.remarks}}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+        </div>
+    </div>
+</div>
+

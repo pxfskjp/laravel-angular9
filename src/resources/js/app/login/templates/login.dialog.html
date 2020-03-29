@@ -1,0 +1,25 @@
+<div class="maindialog">
+    <div mat-dialog-title>
+        <div mat-toolbar class="mat-toolbar">
+            <p class="dialogtitle" i18n>Logging</p>
+            <span flex></span>
+        </div>
+    </div>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit(loginForm.value)">    
+        <div mat-dialog-content>
+            <div class="dialog-content">
+                <mat-form-field class="fullwidth">
+                    <label i18n>Email</label>
+                    <input matInput formControlName="email">
+                </mat-form-field>
+                <mat-form-field class="fullwidth">
+                    <label i18n>Password</label>
+                    <input matInput formControlName="password">
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!loginForm.valid" i18n>Log in</button>
+        </div>
+    </form>
+</div>

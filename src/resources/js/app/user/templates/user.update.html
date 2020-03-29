@@ -1,0 +1,46 @@
+<div class="maindialog" style="width: 900px;">
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit(userForm.value)">
+        <div mat-dialog-title>
+            <div mat-toolbar>
+                <p i18n>Edit user</p>
+            </div>
+        </div>
+        <div mat-dialog-content>
+            <div class="dialog-content">
+<!--
+        <div fxLayout="row" fxLayoutAlign="space-between" >   
+            <div fxFlex="40">
+            </div>
+            <div fxFlex="40">
+            </div>
+        </div>
+-->
+                <mat-form-field>
+                    <label for="firstname">
+                        <span i18n>Firstname</span>
+                        <span class="error-message" *ngIf="noValidate('firstname')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="firstname" />
+                </mat-form-field>
+                <mat-form-field>
+                    <label for="lastname">
+                        <span i18n>Lastname</span>
+                        <span class="error-message" *ngIf="noValidate('lastname')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="lastname" />
+                </mat-form-field>
+                <mat-form-field>
+                    <label for="email">
+                        <span i18n>Email</span>
+                        <span class="error-message" *ngIf="noValidate('email')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="email" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" type="button" (click)="cancel()" i18n>Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!userForm.valid" i18n>Submit</button>
+        </div>
+    </form>
+</div>

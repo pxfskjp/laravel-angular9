@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template" target-language="en">
+    <body>
+      <trans-unit id="6080b77234e92ad41bb52653b239c4c4f851317d" datatype="html">
+        <source>Error</source><target state="final">Error</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/templates/errordialog.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f4e529ae5ffd73001d1ff4bbdeeb0a72e342e5c8" datatype="html">
+        <source>Close</source><target state="final">Close</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/templates/errordialog.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0295e37c88ba1f28e569a35e3c6871b90529f8fa" datatype="html">
+        <source>Confirmation</source><target state="final">Confirmation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/templates/confirmdialog.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source><target state="final">Cancel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/templates/confirmdialog.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.update.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="68e710782ccb5398b3acb8844caf0b199da2c3da" datatype="html">
+        <source>Confirm</source><target state="final">Confirm</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/common/dialogs/templates/confirmdialog.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4dcc3f5c97c9b5143dffa87201f855cf68103030" datatype="html">
+        <source>Hardware list</source><target state="final">Hardware list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.list.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a9960f24501b62f1732d47f5cde1c8de396ca925" datatype="html">
+        <source>Add new Hardware</source><target state="final">Add new Hardware</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.list.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
+        <source>Search</source><target state="final">Search</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.list.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.list.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.list.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b38089d136f77fcc9c21d1866fcf357704ad71fd" datatype="html">
+        <source>Edit hardware</source><target state="final">Edit hardware</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1224c9ab24cb1f07c3aad9ddb2de868e16f0418e" datatype="html">
+        <source>System_id</source><target state="final">System_id</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7f4cf28d944b29a067352048a41b679ad7d12ad0" datatype="html">
+        <source> (required)</source><target state="final"> (required)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.update.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
+        <source>Name</source><target state="final">Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.update.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2beaaad4db9bf687465a47344ba997f5fd3b5c02" datatype="html">
+        <source>Serial_number</source><target state="final">Serial_number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62f412153839eee855af1668bb74162afa00c610" datatype="html">
+        <source>Production_year</source><target state="final">Production_year</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
+        <source>Submit</source><target state="final">Submit</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/hardware/templates/hardware.update.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.update.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="67d73d232779d93bfdfb44fe134926f1aaa64468" datatype="html">
+        <source>Software list</source><target state="final">Software list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.list.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2975f1680d05310fbde1a37d995912634c3ee38f" datatype="html">
+        <source>Add new Software</source><target state="final">Add new Software</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.list.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d9ad88fce0a6a1e68e1b493be3718cc0ef574c40" datatype="html">
+        <source>Edit software</source><target state="final">Edit software</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/software/templates/software.update.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="58866bd2a411a7df43a1708322598f772a8f893e" datatype="html">
+        <source>User list</source><target state="final">User list</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.list.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2df47a22f05b9ac3bdabb6693d4bc37c3ad7c000" datatype="html">
+        <source>Add new User</source><target state="final">Add new User</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.list.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="632e8b20c98e8eec4059a605a4b011bb476137af" datatype="html">
+        <source>Edit user</source><target state="final">Edit user</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="adadf996dcd6f06c274f01f9ba766339a7ae6b21" datatype="html">
+        <source>Firstname</source><target state="final">Firstname</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b38714fa958eaae47696e2822d9ba80969385353" datatype="html">
+        <source>Lastname</source><target state="final">Lastname</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source><target state="final">Email</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/user/templates/user.update.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/templates/login.dialog.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2a0e9f550a391aa5b4639d2c85ba060358390726" datatype="html">
+        <source>Logging</source><target state="final">Logging</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/templates/login.dialog.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source><target state="final">Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/templates/login.dialog.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f093d9574ab746b231504bd2cbb65f04bd7b00db" datatype="html">
+        <source>Log in</source><target state="final">Log in</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/login/templates/login.dialog.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

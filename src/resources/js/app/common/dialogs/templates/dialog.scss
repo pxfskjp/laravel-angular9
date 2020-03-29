@@ -1,0 +1,71 @@
+.errorbox, .confirmbox {
+    .mat-dialog-container {
+        padding: 0;
+        overflow:visible;
+        min-width: 300px;
+        max-width: 50vw;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .mat-dialog-content {
+        margin: 0;
+        padding: 0;
+    }
+    .mat-dialog-actions {
+        margin: 0;
+        padding: 12px;
+        button {
+            opacity:0.8;
+            color: #fff;
+            &:hover {
+                opacity: 1;
+            }
+        }
+    }
+    .mat-dialog-title {
+        margin: 0 0 20px;
+        display: block;
+        padding: 8px;
+        border-bottom: 1px #bbb solid;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        p {
+            font-size:  1.5 * $mainFontSize;
+            font-weight: $bold;
+            margin: 0;
+            padding: 8px 16px;
+        }
+    }    
+    .dialog-content {
+        overflow: visible;
+        margin: 0;
+        padding: 0 12px;
+    }
+}
+
+.errorbox {
+    .mat-dialog-actions {
+        button {
+            background-color: $errorDialogColor;
+        }
+    }
+    .mat-dialog-title {
+        p {
+            color: $errorDialogColor;
+        }
+    }
+}
+
+.confirmbox {
+    .mat-dialog-actions {
+        button {
+            background-color: $confirmDialogColor;
+        }
+    }
+    .mat-dialog-title {
+        p {
+            color: $confirmDialogColor;
+        }
+    }
+}
+

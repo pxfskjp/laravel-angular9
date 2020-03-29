@@ -1,0 +1,61 @@
+<div class="maindialog" style="width: 900px;">
+    <form [formGroup]="hardwareForm" (ngSubmit)="onSubmit(hardwareForm.value)">
+        <div mat-dialog-title>
+            <div mat-toolbar>
+                <p i18n>Edit hardware</p>
+            </div>
+        </div>
+        <div mat-dialog-content>
+            <div class="dialog-content">
+                <div fxLayout="row" fxLayoutAlign="space-between" >   
+                    <div fxFlex="47">
+                        <mat-form-field>
+                            <label for="name">
+                                <span i18n>Name</span>
+                                <span class="error-message" *ngIf="noValidate('name')" i18n> (required)</span>
+                            </label>
+                            <input matInput formControlName="name" />
+                        </mat-form-field>                    
+                    </div>
+                    <div fxFlex="47">
+                        <mat-form-field>
+                            <label for="serial_number">
+                                <span i18n>Serial number</span>
+                                <span class="error-message" *ngIf="noValidate('serial_number')" i18n> (required)</span>
+                            </label>
+                            <input matInput formControlName="serial_number" />
+                        </mat-form-field>                    
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutAlign="space-between" >
+                    <div fxFlex="74">
+                        <mat-form-field>
+                            <label for="system">
+                                <span i18n>System</span>
+                            </label>
+                            <input matInput formControlName="system" [matAutocomplete]="autoSystem">
+                            <mat-autocomplete #autoSystem="matAutocomplete" [displayWith]="systemName" >
+                                <mat-option *ngFor="let system of systemList" [value]="system">
+                                    {{system.name}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="20">
+                        <mat-form-field>
+                            <label for="production_year">
+                                <span i18n>Production year</span>
+                                <span class="error-message" *ngIf="noValidate('production_year')" i18n> (required)</span>
+                            </label>
+                            <input matInput formControlName="production_year" />
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" type="button" (click)="cancel()" i18n>Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!hardwareForm.valid" i18n>Submit</button>
+        </div>
+    </form>
+</div>

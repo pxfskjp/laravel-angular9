@@ -1,0 +1,157 @@
+hardware:
+  get:
+    tags:
+      - Hardware
+    description: 'Get list of hardwares'
+    operationId: index
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+    responses:
+      200:
+        description: 'Returns hardwares list'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  type: array
+                  items:
+                    $ref: './model.yaml#/Hardware'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'        
+  post:
+    tags:
+      - Hardware
+    description: 'Store new hardware'
+    operationId: store
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: body
+        description: Hardware to create
+        name: data
+        schema:
+          type: object
+          required:
+            - name
+            - serial_number
+            - production_year
+          properties:
+            system_id:
+              type: integer
+            name:
+              type: string
+            serial_number:
+              type: string
+            production_year:
+              type: integer
+    responses:
+      200:
+        description: 'Returns hardware'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  $ref: './model.yaml#/Hardware'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'
+
+hardwareid:
+  patch:
+    tags:
+      - Hardware
+    description: 'Update hardware'
+    operationId: update
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: path
+        name: id
+        type: integer
+        required: true
+      - in: body
+        description: Hardware properties to update
+        name: data
+        schema:
+          type: object
+          required:
+            - name
+            - serial_number
+            - production_year
+          properties:
+            system_id:
+              type: integer
+            name:
+              type: string
+            serial_number:
+              type: string
+            production_year:
+              type: integer
+    responses:
+      200:
+        description: 'Returns hardware'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  $ref: './model.yaml#/Hardware'
+      400:
+        $ref: '../common/responses.yaml#/BadRequestResponse'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'
+  delete:
+    tags:
+      - Hardware
+    description: 'Delete hardware'
+    operationId: destroy
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: path
+        name: id
+        type: integer
+        required: true
+    responses:
+      204:
+        description: 'Hardware was deleted'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  type: object
+      400:
+        $ref: '../common/responses.yaml#/BadRequestResponse'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'

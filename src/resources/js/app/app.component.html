@@ -1,0 +1,14 @@
+<div fxLayout="row" fxLayoutAlign="space-around" >
+    <div fxFlex="80">
+        <nav mat-tab-nav-bar *ngIf="isLoggedIn">
+        <a mat-tab-link [routerLink]="['/user']" [active]="isActive('/user')">Users</a>     
+        <a mat-tab-link [routerLink]="['/system']" [active]="isActive('/system')">Systems</a>           
+        <a mat-tab-link [routerLink]="['/hardware']" [active]="isActive('/hardware')">Hardwares</a>
+        <a mat-tab-link [routerLink]="['/history']" [active]="isActive('/history')">History</a>
+        </nav>
+    </div>
+    <div fxFlex="15" fxLayoutAlign="end center">
+        <fa-icon [icon]="logoutIcon" size="2x" (click)="logout()" i18n-title title="Logout"></fa-icon>
+    </div>
+</div>
+<router-outlet></router-outlet>

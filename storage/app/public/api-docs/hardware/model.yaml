@@ -1,0 +1,13 @@
+Hardware:
+  title: Hardware
+  type: object
+  properties:
+    id:
+      type: integer
+    name:
+      type: string
+    serial_number:
+      type: string
+    production_year:
+      type: string
+

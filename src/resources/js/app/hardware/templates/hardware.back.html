@@ -1,0 +1,49 @@
+<div class="maindialog" style="width: 900px;">
+    <form [formGroup]="leaseForm" (ngSubmit)="onSubmit(leaseForm.value)">
+        <div mat-dialog-title>
+            <div mat-toolbar>
+                <p i18n>Get back hardware</p>
+            </div>
+        </div>
+        <div mat-dialog-content>
+            <div class="dialog-content">
+                <div fxLayout="row" fxLayoutAlign="space-between" >
+                    <div fxFlex="78">
+                        <mat-form-field>
+                            <label for="user">
+                                <span i18n>From user</span>
+                            </label>
+                            <input matInput formControlName="user" [matAutocomplete]="autoUser">
+                            <mat-autocomplete #autoUser="matAutocomplete" [displayWith]="userFullName" >
+                                <mat-option *ngFor="let user of userList" [value]="user">
+                                    {{user.firstname}}&nbsp;{{user.lastname}}
+                                </mat-option>
+                            </mat-autocomplete>
+                        </mat-form-field>
+                    </div>
+                    <div fxFlex="20">
+                        <mat-form-field>
+                            <label for="date">
+                                <span i18n>Date</span>
+                                <span class="error-message" *ngIf="noValidate('date')"></span>
+                            </label>
+                            <input matInput [matDatepicker]="picker_date" formControlName="date">
+                            <mat-datepicker-toggle matSuffix [for]="picker_date"></mat-datepicker-toggle>
+                            <mat-datepicker #picker_date disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <mat-form-field>
+                    <label for="remarks">
+                        <span i18n>Remarks</span>
+                    </label>
+                    <input matInput formControlName="remarks" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" type="button" (click)="cancel()" i18n>Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!leaseForm.valid" i18n>Submit</button>
+        </div>
+    </form>
+</div>

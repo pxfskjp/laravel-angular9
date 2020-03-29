@@ -1,0 +1,299 @@
+body {
+    font-size: $mainFontSize;
+    line-height: normal;
+    font-family: $fontFamily;
+    font-weight: $normal;
+    margin: 0 0 $paddingStart 0;
+    outline: 0 none;
+    color: $mainFontColor;
+    box-sizing: border-box;
+}
+
+b {
+    font-weight: $bold;
+}
+
+* {
+    font-family: $fontFamily !important;
+    box-sizing: border-box;
+    outline: 0 none;
+}
+
+button {
+    margin-left: 8px;
+}
+
+.maintab_bound {
+    margin: 2em;
+    padding: 2em $paddingStart;
+    border-radius: 0;
+    background-color: #FFFFEE;
+    box-shadow: 0 0 20px #5d5d5d;
+    .mat-raised-button {
+        margin-left: $paddingStart;
+        color: #FFFFFF;
+        &:hover {
+            color: cyan;
+        }
+        &:first-child {
+            margin-left: 0px;
+        }
+        &.mat-primary {
+            background-color: $navyBlueColor;
+        }
+    }
+    .title {
+       font-size: 1.5em;
+    }  
+}
+
+.add-and-search {
+    margin-top: 2 * $paddingStart;
+    display: flex;
+    justify-content:space-between;
+    .mat-form-field-appearance-legacy .mat-form-field-underline {
+        bottom: 0;
+    }
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+        padding-bottom: 0px;
+    }
+}
+
+table.maintable {
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0 none;
+    padding: 0;
+    box-sizing: border-box;
+    &.dialogtable {
+        margin: 0;
+    }
+    &.disabled {
+        opacity: 0.4;
+    }
+    th {
+        padding: 6px $paddingStart;
+        background: $tableHeaderBackground;
+        font-size: 1.15 * $mainFontSize;
+        color: #071727;
+        text-align: center;
+        margin: 0;
+        overflow: visible;
+        white-space: nowrap;
+        box-sizing: border-box;
+        position: relative;
+        top: 0;
+        vertical-align: top;
+        border: 0 none;
+        border-left: 1px solid #bbb;
+        border-right: 1px solid #bbb;
+        background-clip: padding-box;
+        width: 1px;
+        font-weight: $normal;
+        &[class^="sort"] {
+            cursor: pointer;
+        }
+        &.fullwidth {
+            width: 100%;
+        }
+        &.sort-descent:before {
+            content: '\25B2';
+        }
+        &.sort-ascent:before {
+            content: '\25BC';
+        }
+        &.sort:hover {
+            color: $hover;
+        }        
+    }
+    tr.disabled {
+        opacity: 0.6;
+    }    
+    tr.selected {
+       background-color: #3f51b5;
+       color: #fff;
+    }
+    tr.footer {
+       background-color: #ccc;
+       font-weight: $bold;
+    }
+    tr.mat-header-row {
+        height:inherit;
+    }
+    td {
+        padding: 4px $paddingStart;
+        border: 1px solid #bbb;
+        margin: 0;
+        overflow: visible;
+        width: 1px;
+        cursor: default;
+        cursor: default;
+        &.fullwidth {
+            width: 100%;
+        }
+        &.nowrap {
+            white-space: nowrap;
+        }
+    }
+}
+
+.align-left {
+    text-align: left;
+}
+        
+.align-right {
+    text-align: right;
+}
+        
+.align-center {
+    text-align: center;
+}
+
+.fullwidth {
+    width: 100%;
+}
+
+.ng-fa-icon {
+    cursor: pointer;
+    padding: 1px 3px;
+    &:hover {
+        border-radius: 5px;
+        background-color: $blueBackground;
+    }
+}
+
+.maindialog {
+    min-width: 600px;
+}
+
+.modalbox {
+    .mat-dialog-container {
+        padding: 0;
+        display: block;
+        border-radius: 4px;
+        box-sizing: border-box;
+        overflow: visible;
+        outline: 0;
+        width: 100%;
+        height: 100%;
+        min-height: inherit;
+        max-height: inherit;  
+        .mat-form-field {
+            display: inline-block;
+            position: relative;
+            text-align: left;
+            width: 100%;
+            label {
+                color: $navyBlueColor;
+                line-height: 30px;
+                font-size: 0.8 * $mainFontSize;
+            }
+            &.mat-form-field-invalid label {
+                color: $requiredColor;
+            }
+            .mat-form-field-wrapper {
+                position: relative;
+                padding-bottom: 1.25em;
+                .mat-form-field-flex {
+                    display: inline-flex;
+                    align-items: baseline;
+                    box-sizing: border-box;
+                    width: 100%;
+                    .mat-form-field-infix {
+                        display: block;
+                        position: relative;
+                        flex: auto;
+                        min-width: 0;
+                        width: 180px;
+                        padding: .5em 0 0 0;
+                        border-top: .84375em solid transparent;
+                        .mat-input-element {
+                            font: inherit;
+                            background: 0 0;
+                            color: currentColor;
+                            border: none;
+                            outline: 0;
+                            padding: 4px;
+                            margin: 0;
+                            width: 100%;
+                            max-width: 100%;
+                            vertical-align: bottom;
+                            text-align: inherit;
+                        }  
+                        .mat-form-field-label-wrapper {
+                            position: absolute;
+                            left: 0;
+                            box-sizing: content-box;
+                            width: 100%;
+                            height: 100%;
+                            overflow: hidden;
+                            pointer-events: none;
+                        }                                                      
+                    }
+                    .mat-form-field-subscript-wrapper {
+                        position: absolute;
+                        box-sizing: border-box;
+                        width: 100%;
+                        overflow: hidden;
+                        font-size: 75%;
+                    }                                             
+                } 
+                .mat-form-field-underline {
+                    height: 1px;
+                    position: absolute;
+                    bottom: 1.25em;
+                    width: 100%;
+                    pointer-events: none;
+                    transform: scaleY(1.0001);
+                    background-color: rgba(0,0,0,.42);
+                }                                
+            }            
+        }              
+    }
+    .mat-dialog-content {
+        margin: 0;
+        padding: 2 * $paddingStart 2 * $paddingStart 0 2 * $paddingStart;
+        max-height: 400px;
+    }
+    .mat-dialog-actions {
+        margin: 0;
+        padding: 12px;
+    }
+    .mat-dialog-title {
+        margin: 0;
+        display: block;
+        padding: 8px;
+        border-bottom: 1px #bbb solid;
+        background: $navyBlueColor;
+        color: #fff;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        p {
+            font-size:  1.25 * $mainFontSize;
+            font-weight: $bold;
+            margin: 0;
+            padding: 8px;
+            background: $navyBlueColor;
+            color: #fff;
+        }
+    }    
+}
+
+.maintab_bound .mat-raised-button.mat-primary {
+    background-color: $navyBlueColor;
+}
+
+.menu-item-active {
+    border-bottom: 2px solid #3f51b5;
+    opacity: 1 !important;
+}
+
+th.mat-header-cell:first-of-type, td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type {
+    padding-left: $paddingStart !important;
+}
+
+.dialogtable {
+    height: 60vh;
+    overflow-y: auto;
+    margin-top:15px;
+}

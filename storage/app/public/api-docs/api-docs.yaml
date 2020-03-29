@@ -1,0 +1,30 @@
+openapi: 3.0.0
+info:
+  title: 'Hardware Api'
+  contact:
+    email: jacek_slawinski@poczta.onet.pl
+  license:
+    name: 'Apache 2.0'
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  version: 1.0.0
+servers:
+  - url: 'http://hardware.lh'
+    description: 'Api'
+paths:
+  /hardware:
+    $ref: './hardware/paths.yaml#/hardware'
+  /hardware/{id}:
+    $ref: './hardware/paths.yaml#/hardwareid'
+  /system:
+    $ref: './system/paths.yaml#/system'
+  /system/{id}:
+    $ref: './system/paths.yaml#/systemid'    
+components:
+  parameters:
+    JWT_token:
+      name: Authorization
+      in: header
+      description: 'JWT access token'
+      required: true
+      schema:
+        type: string

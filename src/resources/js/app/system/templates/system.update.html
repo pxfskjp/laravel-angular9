@@ -1,0 +1,24 @@
+<div class="maindialog" style="width: 900px;">
+    <form [formGroup]="systemForm" (ngSubmit)="onSubmit(systemForm.value)">
+        <div mat-dialog-title>
+            <div mat-toolbar>
+                <p i18n>Edit system</p>
+            </div>
+        </div>
+        <div mat-dialog-content>
+            <div class="dialog-content">
+                <mat-form-field>
+                    <label for="name">
+                        <span i18n>Name</span>
+                        <span class="error-message" *ngIf="noValidate('name')" i18n> (required)</span>
+                    </label>
+                    <input matInput formControlName="name" />
+                </mat-form-field>
+            </div>
+        </div>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" type="button" (click)="cancel()" i18n>Cancel</button>
+            <button mat-raised-button color="primary" type="submit" [disabled]="!systemForm.valid" i18n>Submit</button>
+        </div>
+    </form>
+</div>

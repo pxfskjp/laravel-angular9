@@ -1,0 +1,157 @@
+system:
+  get:
+    tags:
+      - System
+    description: 'Get list of systems'
+    operationId: index
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+    responses:
+      200:
+        description: 'Returns systems list'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  type: array
+                  items:
+                    $ref: './model.yaml#/System'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'        
+  post:
+    tags:
+      - System
+    description: 'Store new system'
+    operationId: store
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: body
+        description: System to create
+        name: data
+        schema:
+          type: object
+          required:
+            - name
+            - serial_number
+            - production_year
+          properties:
+            system_id:
+              type: integer
+            name:
+              type: string
+            serial_number:
+              type: string
+            production_year:
+              type: integer
+    responses:
+      200:
+        description: 'Returns system'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  $ref: './model.yaml#/System'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'
+
+systemid:
+  patch:
+    tags:
+      - System
+    description: 'Update system'
+    operationId: update
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: path
+        name: id
+        type: integer
+        required: true
+      - in: body
+        description: System properties to update
+        name: data
+        schema:
+          type: object
+          required:
+            - name
+            - serial_number
+            - production_year
+          properties:
+            system_id:
+              type: integer
+            name:
+              type: string
+            serial_number:
+              type: string
+            production_year:
+              type: integer
+    responses:
+      200:
+        description: 'Returns system'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  $ref: './model.yaml#/System'
+      400:
+        $ref: '../common/responses.yaml#/BadRequestResponse'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'
+  delete:
+    tags:
+      - System
+    description: 'Delete system'
+    operationId: destroy
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: path
+        name: id
+        type: integer
+        required: true
+    responses:
+      204:
+        description: 'System was deleted'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  type: object
+      400:
+        $ref: '../common/responses.yaml#/BadRequestResponse'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'

@@ -1,0 +1,42 @@
+Response:
+  type: object
+  properties:
+    message:
+      type: string
+    result:
+      type: object
+
+SuccessfulResponse:
+  description: OK
+  content:
+    application/json:
+      schema:
+        $ref: '#/Response'
+
+UnauthorizedResponse:
+  description: 'Unauthorized - token expired or bad permissions'
+  content:
+    application/json:
+      schema:
+        $ref: '#/Response'
+
+ForbiddenResponse:
+  description: 'Forbidden - invalid token'
+  content:
+    application/json:
+      schema:
+        $ref: '#/Response'
+
+ServerErrorResponse:
+  description: 'Server error - query exception'
+  content:
+    application/json:
+      schema:
+        $ref: '#/Response'
+            
+BadRequestResponse:
+  description: 'Bad request - record not found'
+  content:
+    application/json:
+      schema:
+        $ref: '#/Response'
