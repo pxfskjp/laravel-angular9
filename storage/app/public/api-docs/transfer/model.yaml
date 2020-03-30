@@ -1,0 +1,16 @@
+Transfer:
+  title: Transfer
+  type: object
+  properties:
+    id: 
+      type: integer
+    user_id: 
+      type: integer
+    hardware_id: 
+      type: integer
+    type: 
+      type: integer
+    date:
+      type: string
+    remarks:
+      type: string

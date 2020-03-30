@@ -36,7 +36,7 @@ hardware:
       -
         $ref: '../api-docs.yaml#/components/parameters/JWT_token'
       - in: body
-        description: Hardware to create
+        description: 'Hardware to create'
         name: data
         schema:
           type: object
@@ -45,8 +45,6 @@ hardware:
             - serial_number
             - production_year
           properties:
-            system_id:
-              type: integer
             name:
               type: string
             serial_number:
@@ -73,7 +71,7 @@ hardware:
         $ref: '../common/responses.yaml#/ServerErrorResponse'
 
 hardwareid:
-  patch:
+  put:
     tags:
       - Hardware
     description: 'Update hardware'
@@ -86,7 +84,7 @@ hardwareid:
         type: integer
         required: true
       - in: body
-        description: Hardware properties to update
+        description: 'Hardware to create'
         name: data
         schema:
           type: object
@@ -95,8 +93,6 @@ hardwareid:
             - serial_number
             - production_year
           properties:
-            system_id:
-              type: integer
             name:
               type: string
             serial_number:

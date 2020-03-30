@@ -2,12 +2,11 @@ Hardware:
   title: Hardware
   type: object
   properties:
-    id:
+    id: 
       type: integer
     name:
       type: string
     serial_number:
       type: string
-    production_year:
-      type: string
-
+    production_year: 
+      type: integer

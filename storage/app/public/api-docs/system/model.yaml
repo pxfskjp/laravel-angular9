@@ -2,8 +2,7 @@ System:
   title: System
   type: object
   properties:
-    id:
+    id: 
       type: integer
     name:
       type: string
-

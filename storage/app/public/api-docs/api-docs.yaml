@@ -8,17 +8,19 @@ info:
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
   version: 1.0.0
 servers:
-  - url: 'http://hardware.lh'
+  - url: 'http://...'
     description: 'Api'
 paths:
-  /hardware:
-    $ref: './hardware/paths.yaml#/hardware'
-  /hardware/{id}:
-    $ref: './hardware/paths.yaml#/hardwareid'
-  /system:
-    $ref: './system/paths.yaml#/system'
-  /system/{id}:
-    $ref: './system/paths.yaml#/systemid'    
+    /hardware:
+      $ref: './hardware/paths.yaml#/hardware'
+    /hardware/{id}:
+      $ref: './hardware/paths.yaml#/hardwareid'
+    /system:
+      $ref: './system/paths.yaml#/system'
+    /system/{id}:
+      $ref: './system/paths.yaml#/systemid'
+    /transfer:
+      $ref: './transfer/paths.yaml#/transfer'
 components:
   parameters:
     JWT_token:

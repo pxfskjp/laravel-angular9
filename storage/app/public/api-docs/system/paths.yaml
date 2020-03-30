@@ -36,23 +36,15 @@ system:
       -
         $ref: '../api-docs.yaml#/components/parameters/JWT_token'
       - in: body
-        description: System to create
+        description: 'System to create'
         name: data
         schema:
           type: object
           required:
             - name
-            - serial_number
-            - production_year
           properties:
-            system_id:
-              type: integer
             name:
               type: string
-            serial_number:
-              type: string
-            production_year:
-              type: integer
     responses:
       200:
         description: 'Returns system'
@@ -73,7 +65,7 @@ system:
         $ref: '../common/responses.yaml#/ServerErrorResponse'
 
 systemid:
-  patch:
+  put:
     tags:
       - System
     description: 'Update system'
@@ -86,23 +78,15 @@ systemid:
         type: integer
         required: true
       - in: body
-        description: System properties to update
+        description: 'System to create'
         name: data
         schema:
           type: object
           required:
             - name
-            - serial_number
-            - production_year
           properties:
-            system_id:
-              type: integer
             name:
               type: string
-            serial_number:
-              type: string
-            production_year:
-              type: integer
     responses:
       200:
         description: 'Returns system'

@@ -1,0 +1,78 @@
+transfer:
+  get:
+    tags:
+      - Transfer
+    description: 'Get list of transfers'
+    operationId: index
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+    responses:
+      200:
+        description: 'Returns transfers list'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  type: array
+                  items:
+                    $ref: './model.yaml#/Transfer'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'        
+  post:
+    tags:
+      - Transfer
+    description: 'Store new transfer'
+    operationId: store
+    parameters:
+      -
+        $ref: '../api-docs.yaml#/components/parameters/JWT_token'
+      - in: body
+        description: 'Transfer to create'
+        name: data
+        schema:
+          type: object
+          required:
+            - user_id
+            - hardware_id
+            - type
+            - date
+            - remarks
+          properties:
+            user_id:
+              type: integer
+            hardware_id:
+              type: integer
+            type:
+              type: integer
+            date:
+              type: string
+            remarks:
+              type: string
+    responses:
+      200:
+        description: 'Returns transfer'
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                message:
+                  type: string
+                result:
+                  $ref: './model.yaml#/Transfer'
+      401:
+        $ref: '../common/responses.yaml#/UnauthorizedResponse'
+      403:
+        $ref: '../common/responses.yaml#/ForbiddenResponse'
+      500:
+        $ref: '../common/responses.yaml#/ServerErrorResponse'
+        

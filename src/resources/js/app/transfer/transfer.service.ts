@@ -36,34 +36,6 @@ export class TransferService
         
     }
     
-    destroy(transfer: Transfer): any 
-    {
-        this.loaderService
-            .visible();
-        return this.http
-            .delete(APP_ROUTES.TRANSFER + '/' + transfer.id)
-            .pipe(
-                finalize(() => {
-                    this.loaderService
-                        .invisible();
-                })
-            );
-    }   
-    
-    update(transfer: Transfer): any 
-    {
-        this.loaderService
-            .visible();
-        return this.http
-            .put(`${APP_ROUTES.TRANSFER}/${transfer.id}`, transfer.getArray())
-            .pipe(
-                finalize(() => {
-                    this.loaderService
-                        .invisible();
-                })
-            );
-    } 
-    
     store(transfer: Transfer): any 
     {
         this.loaderService
