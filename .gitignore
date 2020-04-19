@@ -7,5 +7,6 @@
 /TelosysTools/*
 /storage/framework/*
 /storage/framework/logs/*
+/storage/logs/*
 /bootstrap/cache/*
 /spreadshet.json

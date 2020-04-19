@@ -30,3 +30,8 @@ components:
       required: true
       schema:
         type: string
+tags:
+  - name: Hardware
+    description: About Hardware
+  - name: System
+    description: About system

@@ -6,9 +6,12 @@ use App\Http\Responses\RespondForbiddenJson;
 use App\Http\Responses\RespondSuccessJson;
 use App\Http\Responses\RespondUnauthorizedJson;
 use App\Http\Responses\RespondValidationErrorsJson;
+use App\Repositories\Interfaces\HardwareRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\ApiTestCase;
+use Mockery;
+use App\Data\Models\Hardware;
 
 /**
  *
@@ -31,11 +34,29 @@ class StoreTest extends ApiTestCase
      */
     public function storeSuccess(): void
     {
-        $token = $this->setAdminAndJwtToken();
+        $user = $this->setLoggedUser('qwerty123');
+        $token = $this->setJwtToken($user,'qwerty123');
+        $repository = Mockery::mock(HardwareRepositoryInterface::class);
+        $repository->shouldReceive('store')
+            ->with([
+                'name' => '123',
+                'serial_number' => '234',
+                'production_year' => '1995',
+                'system_id' => ''
+            ])
+            ->once()
+            ->andReturn(new Hardware([
+                'name' => '123',
+                'serial_number' => '234',
+                'production_year' => '1995',
+                'system_id' => ''
+            ]));
+        $this->app->instance(HardwareRepositoryInterface::class, $repository);
         $response = $this->postRequest($this->apiRoute, [], [
-            'name' => $this->faker->company,
-            'serial_number' => $this->faker->uuid,
-            'production_year' => $this->faker->year,
+            'name' => '123',
+            'serial_number' => '234',
+            'production_year' => '1995',
+            'system_id' => ''
         ], $this->getBearerHeader($token));
         $response->assertStatus((new RespondSuccessJson())->getResponseHeader());
         $response->assertJsonStructure([
