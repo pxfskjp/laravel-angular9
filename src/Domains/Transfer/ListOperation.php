@@ -13,11 +13,7 @@ use Illuminate\Http\JsonResponse;
 final class ListOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var TransferRepositoryInterface $transferRepository
-     */
-    private $transferRepository;
+    private TransferRepositoryInterface $transferRepository;
 
     /**
      *
@@ -37,7 +33,7 @@ final class ListOperation extends AbstractOperation
     {
         try {
             $transfers = $this->transferRepository->list();
-            return $this->runResponse(new RespondSuccessJson('success', $transfers->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $transfers));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd pobierania listy'));
         }

@@ -2,13 +2,13 @@
 
 namespace App\Data\Models;
 
+use App\Data\Models\User\HasMutators;
+use App\Data\Models\User\HasRelations;
 use Illuminate\Auth\Authenticatable;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 /**
@@ -28,6 +28,8 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
 {
     use Authenticatable;
     use Authorizable;
+    use HasRelations;
+    use HasMutators;
 
     /**
      * @var string $table
@@ -62,25 +64,6 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
         'updated_at',
         'deleted_at'
     ];
-
-    /**
-     *
-     * @return HasOne
-     */
-    public function hardware(): HasOne
-    {
-        return $this->hasOne('App\Data\Models\User\Hardware');
-    }
-
-    /**
-     * @param $value
-     */
-    public function setPasswordAttribute($value)
-    {
-        if ($value) {
-            $this->attributes['password'] = Hash::make($value);
-        }
-    }
 
     /**
      *

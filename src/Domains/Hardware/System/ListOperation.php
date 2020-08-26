@@ -13,11 +13,7 @@ use Illuminate\Http\JsonResponse;
 final class ListOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var SystemRepositoryInterface $hardwareSystemRepository
-     */
-    private $hardwareSystemRepository;
+    private SystemRepositoryInterface $hardwareSystemRepository;
 
     /**
      *
@@ -37,7 +33,7 @@ final class ListOperation extends AbstractOperation
     {
         try {
             $hardwareSystems = $this->hardwareSystemRepository->list();
-            return $this->runResponse(new RespondSuccessJson('success', $hardwareSystems->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $hardwareSystems));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd pobierania listy'));
         }

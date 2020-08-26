@@ -19,17 +19,7 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var \App\Data\Models${entity.name} $hardware
-     */
-    private $hardware;
-
-    /**
-     *
-     * @var HardwareRepositoryInterface $hardwareRepository
-     */
-    private $hardwareRepository;
+    private HardwareRepositoryInterface $hardwareRepository;
 
     /**
      *
@@ -61,11 +51,12 @@ final class UpdateOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            DB::transaction(function () use ($input) {
-                $this->hardware = $this->hardwareRepository->getById($input['id']);
-                $this->hardwareRepository->update($this->hardware, $input);
+            $hardware = DB::transaction(function () use ($input) {
+                $hardware = $this->hardwareRepository->getById($input['id']);
+                $this->hardwareRepository->update($hardware, $input);
+                return $hardware;
             });
-            return $this->runResponse(new RespondSuccessJson('success', $this->hardware->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $hardware));
         } catch (ModelNotFoundException $e) {
             return $this->runResponse(new RespondBadRequestJson('Nie znaleziono hardware'));
         } catch (QueryException $e) {

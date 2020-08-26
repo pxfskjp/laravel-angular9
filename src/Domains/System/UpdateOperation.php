@@ -19,17 +19,7 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var \App\Data\Models${entity.name} $system
-     */
-    private $system;
-
-    /**
-     *
-     * @var SystemRepositoryInterface $systemRepository
-     */
-    private $systemRepository;
+    private SystemRepositoryInterface $systemRepository;
 
     /**
      *
@@ -58,11 +48,12 @@ final class UpdateOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            DB::transaction(function () use ($input) {
-                $this->system = $this->systemRepository->getById($input['id']);
-                $this->systemRepository->update($this->system, $input);
+            $system = DB::transaction(function () use ($input) {
+                $system = $this->systemRepository->getById($input['id']);
+                $this->systemRepository->update($system, $input);
+                return $system;
             });
-            return $this->runResponse(new RespondSuccessJson('success', $this->system->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $system));
         } catch (ModelNotFoundException $e) {
             return $this->runResponse(new RespondBadRequestJson('Nie znaleziono systemu'));
         } catch (QueryException $e) {

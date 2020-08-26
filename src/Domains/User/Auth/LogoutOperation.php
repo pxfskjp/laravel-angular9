@@ -12,17 +12,9 @@ use App\Repositories\Interfaces\User\TokenRepositoryInterface;
 final class LogoutOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var JwtAuth $auth
-     */
-    private $auth;
+    private JwtAuth $auth;
 
-    /**
-     *
-     * @var TokenRepositoryInterface $tokenRepository
-     */
-    private $tokenRepository;
+    private TokenRepositoryInterface $tokenRepository;
 
     /**
      *

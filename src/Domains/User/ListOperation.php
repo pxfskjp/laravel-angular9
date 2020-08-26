@@ -4,7 +4,6 @@ namespace App\Domains\User;
 
 use App\Data\Models\User;
 use App\Domains\AbstractOperation;
-use App\Domains\User\Transformers\UserTransformer;
 use App\Http\Responses\RespondServerErrorJson;
 use App\Http\Responses\RespondSuccessJson;
 use App\Repositories\Interfaces\UserRepositoryInterface;
@@ -14,26 +13,15 @@ use Illuminate\Http\JsonResponse;
 final class ListOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var UserRepositoryInterface $userRepository
-     */
-    private $userRepository;
-
-    /**
-     *
-     * @var UserTransformer $transformer
-     */
-    private $transformer;
+    private UserRepositoryInterface $userRepository;
 
     /**
      *
      * @param UserRepositoryInterface $userRepository
      */
-    public function __construct(UserRepositoryInterface $userRepository, UserTransformer $transformer)
+    public function __construct(UserRepositoryInterface $userRepository)
     {
         $this->userRepository = $userRepository;
-        $this->transformer = $transformer;
     }
 
     /**
@@ -45,7 +33,7 @@ final class ListOperation extends AbstractOperation
     {
         try {
             $users = $this->userRepository->list();
-            return $this->runResponse(new RespondSuccessJson('success', $this->transformer->transform($users)));
+            return $this->runResponse(new RespondSuccessJson('success', $users));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd pobierania listy użytkowników'));
         }

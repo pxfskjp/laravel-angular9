@@ -3,15 +3,15 @@
 namespace App\Exceptions;
 
 use App\Http\Responses\RespondUnauthorizedJson;
-use App\Http\Responses\ResponseJobTrait;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpFoundation\Response;
 use Throwable;
+use App\Http\Responses\ResponseJsonTrait;
 
 class Handler extends ExceptionHandler
 {
-    use ResponseJobTrait;
+    use ResponseJsonTrait;
 
     /**
      * A list of the exception types that are not reported.

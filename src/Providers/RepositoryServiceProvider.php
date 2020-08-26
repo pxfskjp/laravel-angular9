@@ -2,29 +2,46 @@
 
 namespace App\Providers;
 
-use App\Repositories\HardwareRepository;
-use App\Repositories\SystemRepository;
-use App\Repositories\TransferRepository;
-use App\Repositories\UserRepository;
-use App\Repositories\Interfaces\HardwareRepositoryInterface;
-use App\Repositories\Interfaces\SystemRepositoryInterface;
-use App\Repositories\Interfaces\TransferRepositoryInterface;
-use App\Repositories\Interfaces\UserRepositoryInterface;
-use App\Repositories\Interfaces\User\AuthRepositoryInterface;
-use App\Repositories\Interfaces\User\TokenRepositoryInterface;
-use App\Repositories\User\AuthRepository;
-use App\Repositories\User\TokenRepository;
 use Illuminate\Support\ServiceProvider;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
+
+    private const REPOSITORY_INTERFACE_DIR = 'Repositories' . DIRECTORY_SEPARATOR . 'Interfaces';
+
+    private const REPOSITORY_NAMESPACE = 'App\Repositories';
+
     public function register()
     {
-        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
-        $this->app->bind(TokenRepositoryInterface::class, TokenRepository::class);
-        $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
-        $this->app->bind(HardwareRepositoryInterface::class, HardwareRepository::class);
-        $this->app->bind(SystemRepositoryInterface::class, SystemRepository::class);
-        $this->app->bind(TransferRepositoryInterface::class, TransferRepository::class);
+        $this->scanDir(base_path('src' . DIRECTORY_SEPARATOR . static::REPOSITORY_INTERFACE_DIR), '');
+    }
+
+    /**
+     *
+     * @param  string  $path
+     * @param  string  $nameSpace
+     */
+    private function scanDir(string $path, string $nameSpace): void
+    {
+        foreach (new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS) as $file) {
+            $fileName = $file->getBasename('Interface.php');
+            if ($file->isFile()) {
+                $this->bind($nameSpace . '\\' . $fileName);
+            }
+            if ($file->isDir()) {
+                $this->scanDir($path . DIRECTORY_SEPARATOR . $fileName, $nameSpace . '\\' . $fileName);
+            }
+        }
+    }
+
+    /**
+     *
+     * @param  string  $nameSpace
+     */
+    private function bind(string $nameSpace): void
+    {
+        $this->app->bind(
+            static::REPOSITORY_NAMESPACE . '\Interfaces' . $nameSpace . 'Interface',
+            static::REPOSITORY_NAMESPACE . $nameSpace);
     }
 }

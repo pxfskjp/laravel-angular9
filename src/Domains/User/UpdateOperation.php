@@ -18,17 +18,7 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var \App\Data\Models${entity.name} $user
-     */
-    private $user;
-
-    /**
-     *
-     * @var UserRepositoryInterface $userRepository
-     */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     /**
      *
@@ -59,11 +49,12 @@ final class UpdateOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(UpdateValidator::class, $input)) {
                 return $response;
             }
-            DB::transaction(function () use ($input) {
-                $this->user = $this->userRepository->getById($input['id']);
-                $this->userRepository->update($this->user, $input);
+            $user = DB::transaction(function () use ($input) {
+                $user = $this->userRepository->getById($input['id']);
+                $this->userRepository->update($user, $input);
+                return $user;
             });
-            return $this->runResponse(new RespondSuccessJson('success', $this->user->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $user));
         } catch (ModelNotFoundException $e) {
             return $this->runResponse(new RespondBadRequestJson('Nie znaleziono użytkownika'));
         } catch (QueryException $e) {

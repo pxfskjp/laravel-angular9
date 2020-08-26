@@ -6,11 +6,11 @@ use App\Http\Responses\RespondValidationErrorsJson;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use App\Http\Responses\ResponseJobTrait;
+use App\Http\Responses\ResponseJsonTrait;
 
 abstract class AbstractOperation implements OperationInterface
 {
-    use ResponseJobTrait;
+    use ResponseJsonTrait;
 
     /**
      *

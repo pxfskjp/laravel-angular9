@@ -24,7 +24,7 @@ final class RespondSuccessJson extends AbstractRespondJson
      * @param string $message
      * @param array $result
      */
-    public function __construct(string $message = '', array $result = [])
+    public function __construct(string $message = '', $result = null)
     {
         $this->message = $message;
         $this->result = $result;

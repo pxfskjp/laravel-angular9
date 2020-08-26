@@ -16,17 +16,7 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var \App\Data\Models\System $system
-     */
-    private $system;
-
-    /**
-     *
-     * @var SystemRepositoryInterface $systemRepository
-     */
-    private $systemRepository;
+    private SystemRepositoryInterface $systemRepository;
 
     /**
      *
@@ -54,8 +44,8 @@ final class StoreOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            $this->system = $this->systemRepository->store($input);
-            return $this->runResponse(new RespondSuccessJson('success', $this->system->toArray()));
+            $system = $this->systemRepository->store($input);
+            return $this->runResponse(new RespondSuccessJson('success', $system));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd dodawania system'));
         }

@@ -14,17 +14,9 @@ use App\Repositories\Interfaces\User\TokenRepositoryInterface;
 final class LoginOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var AuthRepositoryInterface $authRepository
-     */
-    private $authRepository;
+    private AuthRepositoryInterface $authRepository;
 
-    /**
-     *
-     * @var TokenRepositoryInterface $tokenRepository
-     */
-    private $tokenRepository;
+    private TokenRepositoryInterface $tokenRepository;
 
     /**
      *
@@ -49,27 +41,23 @@ final class LoginOperation extends AbstractOperation
             'password'
         ]);
         $secret = Token::buildNewSecret();
-        $accessToken = $this->authRepository
-            ->authAttempt($loginData, $secret, Token::getAccessTtl());
+        $accessToken = $this->authRepository->authAttempt($loginData, $secret, Token::getAccessTtl());
         if (empty($accessToken)) {
            return $this->runResponse(new RespondForbiddenJson());
         }
-        $user = $this->authRepository
-            ->getAuthUser();
-        $this->tokenRepository
-            ->saveToken(
-                [
-                    'user_id' => $user->id,
-                    'secret' => $secret,
-                    'type' => Token::getTypeRefresh()
-                ]
-             );
+        $user = $this->authRepository->getAuthUser();
+        $this->tokenRepository->saveToken(
+            [
+                'user_id' => $user->id,
+                'secret' => $secret,
+                'type' => Token::getTypeRefresh()
+            ]
+        );
         return $this->runResponse(new RespondSuccessJson(
             'success',
             [
                 'accessToken' => $accessToken,
-                'refreshToken' => $this->authRepository
-                    ->createJwtToken($secret, Token::getRefreshTtl()),
+                'refreshToken' => $this->authRepository->createJwtToken($secret, Token::getRefreshTtl()),
                 'email' => $user->email
             ]
         ));

@@ -19,17 +19,7 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var Transfer $transfer
-     */
-    private $transfer;
-
-    /**
-     *
-     * @var TransferRepositoryInterface $transferRepository
-     */
-    private $transferRepository;
+    private TransferRepositoryInterface $transferRepository;
 
     /**
      *
@@ -62,11 +52,12 @@ final class UpdateOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            DB::transaction(function () use ($input) {
-                $this->transfer = $this->transferRepository->getById($input['id']);
-                $this->transferRepository->update($this->transfer, $input);
+            $transfer = DB::transaction(function () use ($input) {
+                $transfer = $this->transferRepository->getById($input['id']);
+                $this->transferRepository->update($transfer, $input);
+                return $transfer;
             });
-            return $this->runResponse(new RespondSuccessJson('success', $this->transfer->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $transfer));
         } catch (ModelNotFoundException $e) {
             return $this->runResponse(new RespondBadRequestJson('Nie znaleziono transfer'));
         } catch (QueryException $e) {

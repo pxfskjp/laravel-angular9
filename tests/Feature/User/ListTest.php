@@ -3,10 +3,8 @@
 namespace Tests\Feature\User;
 
 use App\Data\Models\User;
-use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondSuccessJson;
-use App\Http\Responses\RespondUnauthorizedJson;
 use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\ApiTestCase;
 
 /**
@@ -30,7 +28,7 @@ class ListTest extends ApiTestCase
     {
         $token = $this->setAdminAndJwtToken();
         $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondSuccessJson())->getResponseHeader());
+        $response->assertOk();
         $response->assertJsonStructure([
             'message',
             'result' => [
@@ -39,6 +37,7 @@ class ListTest extends ApiTestCase
                     'firstname',
                     'lastname',
                     'email',
+                    'hardware'
                 ]
             ]
         ]);
@@ -51,9 +50,8 @@ class ListTest extends ApiTestCase
     public function listFailureNotLoggedinUser(): void
     {
         factory(User::class)->create();
-        $response = $this->getRequest($this->apiRoute, [
-        ], $this->getBearerHeader(''));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader(''));
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -64,9 +62,8 @@ class ListTest extends ApiTestCase
     {
         $token = $this->setAdminAndJwtToken();
         factory(User::class)->create();
-        $response = $this->getRequest($this->apiRoute, [
-        ], $this->getBearerHeader($token . 'a'));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token . 'a'));
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -80,8 +77,7 @@ class ListTest extends ApiTestCase
         $now = Carbon::now();
         $now->addMinutes(61);
         Carbon::setTestNow($now);
-        $response = $this->getRequest($this->apiRoute, [
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondUnauthorizedJson())->getResponseHeader());
+        $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token));
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

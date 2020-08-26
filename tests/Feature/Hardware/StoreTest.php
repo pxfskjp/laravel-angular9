@@ -2,16 +2,13 @@
 
 namespace Tests\Feature\Hardware;
 
-use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondSuccessJson;
-use App\Http\Responses\RespondUnauthorizedJson;
-use App\Http\Responses\RespondValidationErrorsJson;
+use App\Data\Models\Hardware;
 use App\Repositories\Interfaces\HardwareRepositoryInterface;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\ApiTestCase;
 use Mockery;
-use App\Data\Models\Hardware;
 
 /**
  *
@@ -27,6 +24,50 @@ class StoreTest extends ApiTestCase
      * @var string $apiRoute
      */
     private $apiRoute = 'hardware.store';
+
+    /**
+     *
+     * @return array
+     */
+    public function storeData(): array
+    {
+        $this->refreshApplication();
+        $this->setUpFaker();
+        return [
+            [
+                [
+                    'serial_number' => $this->faker->uuid,
+                    'production_year' => $this->faker->year,
+                ]
+            ],
+            [
+                [
+                    'name' => $this->faker->lexify(\str_repeat('?', 101)),
+                    'serial_number' => $this->faker->uuid,
+                    'production_year' => $this->faker->year,
+                ]
+            ],
+            [
+                [
+                    'name' => $this->faker->company,
+                    'production_year' => $this->faker->year,
+                ]
+            ],
+            [
+                [
+                    'name' => $this->faker->company,
+                    'serial_number' => $this->faker->lexify(\str_repeat('?', 101)),
+                    'production_year' => $this->faker->year,
+                ]
+            ],
+            [
+                [
+                    'name' => $this->faker->company,
+                    'serial_number' => $this->faker->uuid,
+                ]
+            ]
+        ];
+    }
 
     /**
      *
@@ -58,7 +99,7 @@ class StoreTest extends ApiTestCase
             'production_year' => '1995',
             'system_id' => ''
         ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondSuccessJson())->getResponseHeader());
+        $response->assertOK();
         $response->assertJsonStructure([
             'message',
             'result' => [
@@ -81,79 +122,19 @@ class StoreTest extends ApiTestCase
             'serial_number' => $this->faker->uuid,
             'production_year' => $this->faker->year,
         ], $this->getBearerHeader(''));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
      *
      * @test
+     * @dataProvider storeData
      */
-    public function storeFailureNoName(): void
+    public function storeFailureBadData(array $data): void
     {
         $token = $this->setAdminAndJwtToken();
-        $response = $this->postRequest($this->apiRoute, [], [
-            'serial_number' => $this->faker->uuid,
-            'production_year' => $this->faker->year,
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondValidationErrorsJson())->getResponseHeader());
-    }
-
-    /**
-     *
-     * @test
-     */
-    public function storeFailureNameTooLong(): void
-    {
-        $token = $this->setAdminAndJwtToken();
-        $response = $this->postRequest($this->apiRoute, [], [
-            'name' => $this->faker->lexify(\str_repeat('?', 101)),
-            'serial_number' => $this->faker->uuid,
-            'production_year' => $this->faker->year,
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondValidationErrorsJson())->getResponseHeader());
-    }
-
-    /**
-     *
-     * @test
-     */
-    public function storeFailureNoSerialNumber(): void
-    {
-        $token = $this->setAdminAndJwtToken();
-        $response = $this->postRequest($this->apiRoute, [], [
-            'name' => $this->faker->company,
-            'production_year' => $this->faker->year,
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondValidationErrorsJson())->getResponseHeader());
-    }
-
-    /**
-     *
-     * @test
-     */
-    public function storeFailureSerialNumberTooLong(): void
-    {
-        $token = $this->setAdminAndJwtToken();
-        $response = $this->postRequest($this->apiRoute, [], [
-            'name' => $this->faker->company,
-            'serial_number' => $this->faker->lexify(\str_repeat('?', 101)),
-            'production_year' => $this->faker->year,
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondValidationErrorsJson())->getResponseHeader());
-    }
-
-    /**
-     *
-     * @test
-     */
-    public function storeFailureNoProductionYear(): void
-    {
-        $token = $this->setAdminAndJwtToken();
-        $response = $this->postRequest($this->apiRoute, [], [
-            'name' => $this->faker->company,
-            'serial_number' => $this->faker->uuid,
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondValidationErrorsJson())->getResponseHeader());
+        $response = $this->postRequest($this->apiRoute, [], $data, $this->getBearerHeader($token));
+        $response->assertStatus(Response::HTTP_UNPROCESSABLE_ENTITY);
     }
 
     /**
@@ -168,7 +149,7 @@ class StoreTest extends ApiTestCase
             'serial_number' => $this->faker->uuid,
             'production_year' => $this->faker->year,
         ], $this->getBearerHeader($token . 'a'));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -186,6 +167,6 @@ class StoreTest extends ApiTestCase
             'serial_number' => $this->faker->uuid,
             'production_year' => $this->faker->year,
         ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondUnauthorizedJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

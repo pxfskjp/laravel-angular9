@@ -4,7 +4,7 @@ namespace App\Http\Responses;
 
 use Illuminate\Http\JsonResponse;
 
-trait ResponseJobTrait
+trait ResponseJsonTrait
 {
     /**
      *

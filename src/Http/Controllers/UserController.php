@@ -20,9 +20,7 @@ final class UserController extends Controller
      */
     public function index(): JsonResponse
     {
-        return $this->withAuthenticate(function (User $user) {
-            return $this->serve(ListOperation::class, $user);
-        });
+        return $this->withAuthenticate(fn (User $user) => $this->serve(ListOperation::class, $user));
     }
 
     /**
@@ -31,9 +29,7 @@ final class UserController extends Controller
      */
     public function store(): JsonResponse
     {
-        return $this->withAuthenticate(function (User $user) {
-            return $this->serve(StoreOperation::class, $user);
-        });
+        return $this->withAuthenticate(fn (User $user) => $this->serve(StoreOperation::class, $user));
     }
 
     /**
@@ -42,9 +38,7 @@ final class UserController extends Controller
      */
     public function update(): JsonResponse
     {
-        return $this->withAuthenticate(function (User $user) {
-            return $this->serve(UpdateOperation::class, $user);
-        });
+        return $this->withAuthenticate(fn (User $user) => $this->serve(UpdateOperation::class, $user));
     }
 
     /**
@@ -53,8 +47,6 @@ final class UserController extends Controller
      */
     public function destroy(): JsonResponse
     {
-        return $this->withAuthenticate(function (User $user) {
-            return $this->serve(DeleteOperation::class, $user);
-        });
+        return $this->withAuthenticate(fn (User $user) => $this->serve(DeleteOperation::class, $user));
     }
 }

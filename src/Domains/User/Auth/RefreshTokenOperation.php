@@ -21,33 +21,19 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 final class RefreshTokenOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var AuthRepositoryInterface $authRepository
-     */
-    private $authRepository;
+    private AuthRepositoryInterface $authRepository;
 
-    /**
-     *
-     * @var UserRepositoryInterface $userRepository
-     */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
-    /**
-     *
-     * @var TokenRepositoryInterface $tokenRepository
-     */
-    private $tokenRepository;
+    private TokenRepositoryInterface $tokenRepository;
 
-    /**
-     *
-     * @var User $user
-     */
-    private $user;
+    private User $user;
 
     /**
      *
      * @param AuthRepositoryInterface $authRepository
+     * @param UserRepositoryInterface $userRepository
+     * @param TokenRepositoryInterface $tokenRepository
      */
     public function __construct(
         AuthRepositoryInterface $authRepository,
@@ -73,22 +59,19 @@ final class RefreshTokenOperation extends AbstractOperation
                 $userId = $this->authRepository->getUserIdFromRefreshToken($refreshToken);
                 $this->user = $this->userRepository->getById($userId);
                 $this->tokenRepository->deleteRefreshByUserId($userId);
-                $this->tokenRepository
-                    ->saveToken(
-                        [
-                            'user_id' => $userId,
-                            'secret' => $secret,
-                            'type' => Token::getTypeRefresh()
-                        ]
-                    );
+                $this->tokenRepository->saveToken(
+                    [
+                        'user_id' => $userId,
+                        'secret' => $secret,
+                        'type' => Token::getTypeRefresh()
+                    ]
+                );
             });
             return $this->runResponse(new RespondSuccessJson(
                 'success',
                 [
-                    'accessToken' => $this->authRepository
-                        ->attemptFromUser($this->user, $secret, Token::getAccessTtl()),
-                    'refreshToken' => $this->authRepository
-                        ->createJwtToken($secret, Token::getRefreshTtl()),
+                    'accessToken' => $this->authRepository->attemptFromUser($this->user, $secret, Token::getAccessTtl()),
+                    'refreshToken' => $this->authRepository->createJwtToken($secret, Token::getRefreshTtl()),
                     'email' => $this->user->email
                 ]
                 ));

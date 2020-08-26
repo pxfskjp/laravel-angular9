@@ -29,8 +29,6 @@ final class StoreValidator extends AbstractInputValidator
      */
     protected function messages(): array
     {
-        return [
-            ];
+        return [];
     }
-
 }

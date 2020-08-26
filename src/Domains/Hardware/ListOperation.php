@@ -4,7 +4,6 @@ namespace App\Domains\Hardware;
 
 use App\Data\Models\User;
 use App\Domains\AbstractOperation;
-
 use App\Http\Responses\RespondServerErrorJson;
 use App\Http\Responses\RespondSuccessJson;
 use App\Repositories\Interfaces\HardwareRepositoryInterface;
@@ -14,11 +13,7 @@ use Illuminate\Http\JsonResponse;
 final class ListOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var HardwareRepositoryInterface $hardwareRepository
-     */
-    private $hardwareRepository;
+    private HardwareRepositoryInterface $hardwareRepository;
 
     /**
      *
@@ -38,7 +33,7 @@ final class ListOperation extends AbstractOperation
     {
         try {
             $hardwares = $this->hardwareRepository->list();
-            return $this->runResponse(new RespondSuccessJson('success', $hardwares->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $hardwares));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd pobierania listy'));
         }

@@ -3,12 +3,9 @@
 namespace Tests\Feature\Hardware;
 
 use App\Data\Models\Hardware;
-use App\Http\Responses\RespondBadRequestJson;
-use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondNoContentJson;
-use App\Http\Responses\RespondUnauthorizedJson;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\ApiTestCase;
 
 /**
@@ -34,10 +31,8 @@ class DeleteTest extends ApiTestCase
     {
         $token = $this->setAdminAndJwtToken();
         $hardware = factory(Hardware::class)->create();
-        $response = $this->deleteRequest($this->apiRoute, [
-            'id' => $hardware->id
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondNoContentJson())->getResponseHeader());
+        $response = $this->deleteRequest($this->apiRoute, ['id' => $hardware->id], $this->getBearerHeader($token));
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -48,10 +43,8 @@ class DeleteTest extends ApiTestCase
     {
         $token = $this->setAdminAndJwtToken();
         $hardware = factory(Hardware::class)->create();
-        $response = $this->deleteRequest($this->apiRoute, [
-            'id' => $hardware->id + 1
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondBadRequestJson())->getResponseHeader());
+        $response = $this->deleteRequest($this->apiRoute, ['id' => $hardware->id + 1], $this->getBearerHeader($token));
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -61,10 +54,8 @@ class DeleteTest extends ApiTestCase
     public function deleteFailureNotLoggedinUser(): void
     {
         $hardware = factory(Hardware::class)->create();
-        $response = $this->deleteRequest($this->apiRoute, [
-            'id' => $hardware->id
-        ], $this->getBearerHeader(''));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response = $this->deleteRequest($this->apiRoute, ['id' => $hardware->id], $this->getBearerHeader(''));
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -75,10 +66,8 @@ class DeleteTest extends ApiTestCase
     {
         $token = $this->setAdminAndJwtToken();
         $hardware = factory(Hardware::class)->create();
-        $response = $this->deleteRequest($this->apiRoute, [
-            'id' => $hardware->id
-        ], $this->getBearerHeader($token . 'a'));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response = $this->deleteRequest($this->apiRoute, ['id' => $hardware->id], $this->getBearerHeader($token . 'a'));
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -92,9 +81,7 @@ class DeleteTest extends ApiTestCase
         $now = Carbon::now();
         $now->addMinutes(61);
         Carbon::setTestNow($now);
-        $response = $this->deleteRequest($this->apiRoute, [
-            'id' => $hardware->id
-        ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondUnauthorizedJson())->getResponseHeader());
+        $response = $this->deleteRequest($this->apiRoute, ['id' => $hardware->id], $this->getBearerHeader($token));
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

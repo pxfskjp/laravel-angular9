@@ -47,6 +47,4 @@ final class UpdateValidator extends AbstractInputValidator
             'email.unique' => 'Taki email już istnieje',
         ];
     }
-
-
 }

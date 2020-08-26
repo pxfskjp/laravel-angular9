@@ -4,7 +4,6 @@ namespace Tests\Feature\System;
 
 use App\Data\Models\System;
 use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondSuccessJson;
 use App\Http\Responses\RespondUnauthorizedJson;
 use Carbon\Carbon;
 use Tests\ApiTestCase;
@@ -32,7 +31,7 @@ class ListTest extends ApiTestCase
         factory(System::class)->create();
         factory(System::class)->create();
         $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondSuccessJson())->getResponseHeader());
+        $response->assertOk();
         $response->assertJsonStructure([
             'message',
             'result' => [

@@ -1,13 +1,16 @@
 <?php
+
 namespace Tests\Feature\Hardware;
 
 use App\Data\Models\Hardware;
-use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondSuccessJson;
-use App\Http\Responses\RespondUnauthorizedJson;
 use Carbon\Carbon;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\ApiTestCase;
 
+/**
+ * @group api
+ * @group HardwareController
+ */
 class ListTest extends ApiTestCase
 {
     /**
@@ -17,20 +20,14 @@ class ListTest extends ApiTestCase
     private $apiRoute = 'hardware.index';
 
     /**
-     *
      * @test
-     *
-     * @group api
-     * @group HardwareController
-     *
      */
     public function listSuccess(): void
     {
         $token = $this->setAdminAndJwtToken();
-        factory(Hardware::class)->create();
-        factory(Hardware::class)->create();
+        factory(Hardware::class, 2)->create();
         $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondSuccessJson())->getResponseHeader());
+        $response->assertOk();
         $response->assertJsonStructure([
             'message',
             'result' => [
@@ -45,43 +42,28 @@ class ListTest extends ApiTestCase
     }
 
     /**
-     *
      * @test
-     *
-     * @group api
-     * @group HardwareController
-     *
      */
     public function listFailureNotLoggedinUser(): void
     {
         factory(Hardware::class)->create();
         $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader(''));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
-     *
      * @test
-     *
-     * @group api
-     * @group HardwareController
-     *
      */
     public function listFailureBadToken(): void
     {
         $token = $this->setAdminAndJwtToken();
         factory(Hardware::class)->create();
         $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token . 'a'));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
-     *
      * @test
-     *
-     * @group api
-     * @group HardwareController
-     *
      */
     public function deleteFailureTokenExpired(): void
     {
@@ -91,6 +73,6 @@ class ListTest extends ApiTestCase
         $now->addMinutes(61);
         Carbon::setTestNow($now);
         $response = $this->getRequest($this->apiRoute, [], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondUnauthorizedJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

@@ -15,17 +15,7 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var \App\Data\Models\User $user
-     */
-    private $user;
-
-    /**
-     *
-     * @var UserRepositoryInterface $userRepository
-     */
-    private $userRepository;
+    private UserRepositoryInterface $userRepository;
 
     /**
      *
@@ -55,8 +45,8 @@ final class StoreOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            $this->user = $this->userRepository->store($input, $authUser->id);
-            return $this->runResponse(new RespondSuccessJson('success', $this->user->toArray()));
+            $user = $this->userRepository->store($input, $authUser->id);
+            return $this->runResponse(new RespondSuccessJson('success', $user));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd dodawania użytkownika'));
         }

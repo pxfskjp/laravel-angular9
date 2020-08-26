@@ -16,11 +16,7 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var TransferRepositoryInterface $transferRepository
-     */
-    private $transferRepository;
+    private TransferRepositoryInterface $transferRepository;
 
     /**
      *
@@ -53,7 +49,7 @@ final class StoreOperation extends AbstractOperation
                 return $response;
             }
             $transfer = $this->transferRepository->store($input);
-            return $this->runResponse(new RespondSuccessJson('success', $transfer->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $transfer));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd dodawania transfer'));
         }

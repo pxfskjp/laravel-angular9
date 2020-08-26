@@ -17,17 +17,7 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
-    /**
-     *
-     * @var \App\Data\Models\Hardware $hardware
-     */
-    private $hardware;
-
-    /**
-     *
-     * @var HardwareRepositoryInterface $hardwareRepository
-     */
-    private $hardwareRepository;
+    private HardwareRepositoryInterface $hardwareRepository;
 
     /**
      *
@@ -58,10 +48,10 @@ final class StoreOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            DB::transaction(function () use ($input) {
-                $this->hardware = $this->hardwareRepository->store($input);
+            $hardware = DB::transaction(function () use ($input) {
+                return $this->hardwareRepository->store($input);
             });
-            return $this->runResponse(new RespondSuccessJson('success', $this->hardware->toArray()));
+            return $this->runResponse(new RespondSuccessJson('success', $hardware));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd dodawania hardware'));
         }

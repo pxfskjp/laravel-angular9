@@ -3,13 +3,10 @@
 namespace Tests\Feature\System;
 
 use App\Data\Models\System;
-use App\Http\Responses\RespondBadRequestJson;
-use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondNoContentJson;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\WithFaker;
+use Symfony\Component\HttpFoundation\Response;
 use Tests\ApiTestCase;
-use App\Http\Responses\RespondUnauthorizedJson;
 
 /**
  *
@@ -37,7 +34,7 @@ class DeleteTest extends ApiTestCase
         $response = $this->deleteRequest($this->apiRoute, [
             'id' => $system->id
         ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondNoContentJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_NO_CONTENT);
     }
 
     /**
@@ -51,7 +48,7 @@ class DeleteTest extends ApiTestCase
         $response = $this->deleteRequest($this->apiRoute, [
             'id' => $system->id + 1
         ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondBadRequestJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_BAD_REQUEST);
     }
 
     /**
@@ -64,7 +61,7 @@ class DeleteTest extends ApiTestCase
         $response = $this->deleteRequest($this->apiRoute, [
             'id' => $system->id
         ], $this->getBearerHeader(''));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -78,7 +75,7 @@ class DeleteTest extends ApiTestCase
         $response = $this->deleteRequest($this->apiRoute, [
             'id' => $system->id
         ], $this->getBearerHeader($token . 'a'));
-        $response->assertStatus((new RespondForbiddenJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 
     /**
@@ -95,6 +92,6 @@ class DeleteTest extends ApiTestCase
         $response = $this->deleteRequest($this->apiRoute, [
             'id' => $system->id
         ], $this->getBearerHeader($token));
-        $response->assertStatus((new RespondUnauthorizedJson())->getResponseHeader());
+        $response->assertStatus(Response::HTTP_UNAUTHORIZED);
     }
 }

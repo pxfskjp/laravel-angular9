@@ -26,9 +26,7 @@ final class AuthController extends Controller
      */
     public function logout(): JsonResponse
     {
-        return $this->withAuthenticate(function (User $user) {
-            return $this->serve(LogoutOperation::class, $user);
-        });
+        return $this->withAuthenticate(fn (User $user) => $this->serve(LogoutOperation::class, $user));
     }
 
     /**
@@ -37,9 +35,7 @@ final class AuthController extends Controller
      */
     public function pingUser()
     {
-        return $this->withAuthenticate(function () {
-            return $this->serve(PingOperation::class);
-        });
+        return $this->withAuthenticate(fn () => $this->serve(PingOperation::class));
     }
 
     /**

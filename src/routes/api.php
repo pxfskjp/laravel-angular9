@@ -15,83 +15,32 @@ use Symfony\Component\Routing\Exception\RouteNotFoundException;
 Route::post('/refresh-token', 'AuthController@refreshToken');
 
 Route::group(['prefix' => 'hardware'], function () {
-    Route::get('', [
-        'as' => 'hardware.index',
-        'uses' => 'HardwareController@index'
-    ]);
-    Route::delete('{id}', [
-        'as' => 'hardware.destroy',
-        'uses' => 'HardwareController@destroy'
-    ])->where('id', '[0-9]+');
-    Route::post('', [
-        'as' => 'hardware.store',
-        'uses' => 'HardwareController@store'
-    ]);
-    Route::put('{id}', [
-        'as' => 'hardware.update',
-        'uses' => 'HardwareController@update'
-    ])->where('id', '[0-9]+');
-    Route::post('/lease', [
-        'as' => 'hardware.lease',
-        'uses' => 'HardwareController@lease'
-    ]);
+    Route::get('', 'HardwareController@index')->name('hardware.index');
+    Route::delete('{id}', 'HardwareController@destroy')->where('id', '[0-9]+')->name('hardware.destroy');
+    Route::post('', 'HardwareController@store')->name('hardware.store');
+    Route::put('{id}', 'HardwareController@update')->where('id', '[0-9]+')->name('hardware.update');
+    Route::post('/lease', 'HardwareController@lease')->name('hardware.lease');
 });
 
 Route::group(['prefix' => 'system'], function () {
-    Route::get('', [
-        'as' => 'system.index',
-        'uses' => 'SystemController@index'
-    ]);
-    Route::delete('{id}', [
-        'as' => 'system.destroy',
-        'uses' => 'SystemController@destroy'
-    ])->where('id', '[0-9]+');
-    Route::post('', [
-        'as' => 'system.store',
-        'uses' => 'SystemController@store'
-    ]);
-    Route::put('{id}', [
-        'as' => 'system.update',
-        'uses' => 'SystemController@update'
-    ])->where('id', '[0-9]+');
+    Route::get('', 'SystemController@index')->name('system.index');
+    Route::delete('{id}', 'SystemController@destroy')->where('id', '[0-9]+')->name('system.destroy');
+    Route::post('', 'SystemController@store')->name('system.store');
+    Route::put('{id}', 'SystemController@update')->where('id', '[0-9]+')->name('system.update');
 });
 
 Route::group(['prefix' => 'user'], function () {
-    Route::get('', [
-        'as' => 'user.index',
-        'uses' => 'UserController@index'
-    ]);
-    Route::delete('{id}', [
-        'as' => 'user.destroy',
-        'uses' => 'UserController@destroy'
-    ])->where('id', '[0-9]+');
-    Route::post('', [
-        'as' => 'user.store',
-        'uses' => 'UserController@store'
-    ]);
-    Route::put('{id}', [
-        'as' => 'user.update',
-        'uses' => 'UserController@update'
-    ])->where('id', '[0-9]+');
+    Route::get('', 'UserController@index')->name('user.index');
+    Route::delete('{id}', 'UserController@destroy')->where('id', '[0-9]+')->name('user.destroy');
+    Route::post('', 'UserController@store')->name('user.store');
+    Route::put('{id}', 'UserController@update')->where('id', '[0-9]+')->name('user.update');
 });
 
 Route::group(['prefix' => 'transfer'], function () {
-    Route::get('', [
-        'as' => 'transfer.index',
-        'uses' => 'TransferController@index'
-    ]);
-    Route::delete('{id}', [
-        'as' => 'transfer.destroy',
-        'uses' => 'TransferController@destroy'
-    ])->where('id', '[0-9]+');
-    Route::post('', [
-        'as' => 'transfer.store',
-        'uses' => 'TransferController@store'
-    ]);
-    Route::put('{id}', [
-        'as' => 'transfer.update',
-        'uses' => 'TransferController@update'
-    ])->where('id', '[0-9]+');
+    Route::get('', 'TransferController@index')->name('transfer.index');
+    Route::delete('{id}', 'TransferController@destroy')->where('id', '[0-9]+')->name('transfer.destroy');
+    Route::post('', 'TransferController@store')->name('transfer.store');
+    Route::put('{id}', 'TransferController@update')->where('id', '[0-9]+')->name('transfer.update');
 });
 
 Route::fallback(function () {
