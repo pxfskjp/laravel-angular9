@@ -8,4 +8,5 @@
 /storage/framework/*
 /storage/framework/logs/*
 /storage/logs/*
+/bootstrap/cache/*.php
 /spreadshet.json
