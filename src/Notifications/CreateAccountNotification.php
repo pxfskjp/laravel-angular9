@@ -11,16 +11,12 @@ final class CreateAccountNotification extends AbstractNotification implements Sh
 {
     use Queueable;
 
-    /**
-     *
-     * @var string $password
-     */
-    private $password;
+    private string $password;
 
     /**
      *
      * @param User $user
-     * @param string $token
+     * @param string $password
      */
     public function __construct(User $user, string $password)
     {

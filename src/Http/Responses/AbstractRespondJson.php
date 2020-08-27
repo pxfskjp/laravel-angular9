@@ -7,6 +7,11 @@ use Symfony\Component\HttpFoundation\Response;
 
 abstract class AbstractRespondJson extends Response implements ResponseInterface
 {
+
+    protected $result;
+
+    protected string $message;
+
     /**
      *
      * @return JsonResponse

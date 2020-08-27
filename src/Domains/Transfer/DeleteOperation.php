@@ -39,7 +39,7 @@ final class DeleteOperation extends AbstractOperation
         try {
             Gate::authorize('delete', Transfer::class);
             $id = (int) request()->route('transfer');
-            DB::transaction(function () use ($id, $authUser) {
+            DB::transaction(function () use ($id) {
                 $transfer = $this->transferRepository->getById($id);
                 $this->transferRepository->delete($transfer);
             });

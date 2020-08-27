@@ -9,20 +9,8 @@ final class RespondSuccessJson extends AbstractRespondJson
 
     /**
      *
-     * @var string $message
-     */
-    protected $message;
-
-    /**
-     *
-     * @var array $result
-     */
-    protected $result;
-
-    /**
-     *
      * @param string $message
-     * @param array $result
+     * @param mixed $result
      */
     public function __construct(string $message = '', $result = null)
     {

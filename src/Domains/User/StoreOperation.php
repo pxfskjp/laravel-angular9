@@ -45,7 +45,7 @@ final class StoreOperation extends AbstractOperation
             if ($response = $this->validateWithResponse(StoreValidator::class, $input)) {
                 return $response;
             }
-            $user = $this->userRepository->store($input, $authUser->id);
+            $user = $this->userRepository->store($input);
             return $this->runResponse(new RespondSuccessJson('success', $user));
         } catch (QueryException $e) {
             return $this->runResponse(new RespondServerErrorJson('Błąd dodawania użytkownika'));

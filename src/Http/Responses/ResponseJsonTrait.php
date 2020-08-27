@@ -16,4 +16,3 @@ trait ResponseJsonTrait
         return $response->handle();
     }
 }
-
