@@ -11,17 +11,9 @@ use Tymon\JWTAuth\Contracts\Providers\JWT as JWTProvider;
 final class AuthRepository implements AuthRepositoryInterface
 {
 
-    /**
-     *
-     * @var JWTAuth $auth
-     */
-    private $auth;
+    private JWTAuth $auth;
 
-    /**
-     *
-     * @var JWTProvider $provider
-     */
-    private $provider;
+    private JWTProvider $provider;
 
     /**
      *

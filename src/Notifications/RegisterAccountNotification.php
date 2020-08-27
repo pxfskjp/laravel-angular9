@@ -11,11 +11,7 @@ final class RegisterAccountNotification extends AbstractNotification implements 
 {
     use Queueable;
 
-    /**
-     *
-     * @var string $token
-     */
-    private $token;
+    private string $token;
 
     /**
      *
@@ -32,7 +28,7 @@ final class RegisterAccountNotification extends AbstractNotification implements 
      *
      * @return MailMessage
      */
-    public function toMail($notifable): MailMessage
+    public function toMail(): MailMessage
     {
         return (new MailMessage())->view('api::mail.register-account', [
                 'firstname' => $this->user->firstname,

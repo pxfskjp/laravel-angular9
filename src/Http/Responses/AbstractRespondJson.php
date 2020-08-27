@@ -8,6 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 abstract class AbstractRespondJson extends Response implements ResponseInterface
 {
 
+    /**
+     *
+     * @var mixed $result
+     */
     protected $result;
 
     protected string $message;

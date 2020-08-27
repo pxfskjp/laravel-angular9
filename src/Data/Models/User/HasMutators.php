@@ -11,7 +11,7 @@ trait HasMutators
      *
      * @param string $value
      */
-    public function setPasswordAttribute(?string $value)
+    public function setPasswordAttribute(?string $value): void
     {
         if ($value) {
             $this->attributes['password'] = Hash::make($value);

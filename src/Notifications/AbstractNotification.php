@@ -23,6 +23,11 @@ abstract class AbstractNotification extends Notification
         $this->user = $user;
     }
 
+    /**
+     *
+     * @param mixed $notifiable
+     * @return string[]
+     */
     public function via($notifiable)
     {
         return [
@@ -30,6 +35,11 @@ abstract class AbstractNotification extends Notification
         ];
     }
 
+    /**
+     *
+     * @param mixed $notifiable
+     * @return array
+     */
     public function toArray($notifiable)
     {
         return [];
