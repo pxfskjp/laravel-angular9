@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use RecursiveIteratorIterator;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,9 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     private function scanDir(string $path, string $nameSpace): void
     {
-        foreach (new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS) as $file) {
+        $directoryIterator = new \RecursiveDirectoryIterator($path, \FilesystemIterator::SKIP_DOTS);
+        $fileIterator = new \RecursiveIteratorIterator($directoryIterator, RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($fileIterator as $file) {
             $fileName = $file->getBasename('Interface.php');
             if ($file->isFile()) {
                 $this->bind($nameSpace . '\\' . $fileName);

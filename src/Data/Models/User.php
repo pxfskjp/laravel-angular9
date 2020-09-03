@@ -56,7 +56,7 @@ final class User extends Model implements AuthenticatableContract, AuthorizableC
 
     /**
      *
-     * @var array
+     * @var array $hidden
      */
     protected $hidden = [
         'password',
