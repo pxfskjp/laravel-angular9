@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use App\Providers\JWT\Signer\Sha256;
+use App\Providers\JWT\Signer\Signer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Providers\JWT\Signer\Signer;
-use App\Providers\JWT\Signer\Sha256;
 
 final class AppServiceProvider extends ServiceProvider
 {

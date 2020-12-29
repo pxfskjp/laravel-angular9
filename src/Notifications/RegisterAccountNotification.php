@@ -11,6 +11,10 @@ final class RegisterAccountNotification extends AbstractNotification implements 
 {
     use Queueable;
 
+    /**
+     *
+     * @var string $token
+     */
     private string $token;
 
     /**

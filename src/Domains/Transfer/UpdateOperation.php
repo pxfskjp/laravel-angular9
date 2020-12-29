@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var TransferRepositoryInterface $transferRepository
+     */
     private TransferRepositoryInterface $transferRepository;
 
     /**

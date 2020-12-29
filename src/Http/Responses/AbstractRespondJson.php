@@ -14,6 +14,10 @@ abstract class AbstractRespondJson extends Response implements ResponseInterface
      */
     protected $result;
 
+    /**
+     *
+     * @var string $message
+     */
     protected string $message;
 
     /**

@@ -8,14 +8,22 @@ use App\Domains\AbstractOperation;
 use App\Http\Responses\RespondForbiddenJson;
 use App\Http\Responses\RespondSuccessJson;
 use App\Repositories\Interfaces\User\AuthRepositoryInterface;
-use Illuminate\Http\JsonResponse;
 use App\Repositories\Interfaces\User\TokenRepositoryInterface;
+use Illuminate\Http\JsonResponse;
 
 final class LoginOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var AuthRepositoryInterface $authRepository
+     */
     private AuthRepositoryInterface $authRepository;
 
+    /**
+     *
+     * @var TokenRepositoryInterface $tokenRepository
+     */
     private TokenRepositoryInterface $tokenRepository;
 
     /**

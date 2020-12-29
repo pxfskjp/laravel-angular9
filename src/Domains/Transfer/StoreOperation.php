@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var TransferRepositoryInterface $transferRepository
+     */
     private TransferRepositoryInterface $transferRepository;
 
     /**

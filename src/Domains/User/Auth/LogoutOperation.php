@@ -5,15 +5,23 @@ namespace App\Domains\User\Auth;
 use App\Data\Models\User;
 use App\Domains\AbstractOperation;
 use App\Http\Responses\RespondSuccessJson;
+use App\Repositories\Interfaces\User\TokenRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Tymon\JWTAuth\JWTAuth;
-use App\Repositories\Interfaces\User\TokenRepositoryInterface;
 
 final class LogoutOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var JwtAuth $auth
+     */
     private JwtAuth $auth;
 
+    /**
+     *
+     * @var TokenRepositoryInterface $tokenRepository
+     */
     private TokenRepositoryInterface $tokenRepository;
 
     /**

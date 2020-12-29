@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var HardwareRepositoryInterface $hardwareRepository
+     */
     private HardwareRepositoryInterface $hardwareRepository;
 
     /**

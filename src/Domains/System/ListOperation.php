@@ -13,6 +13,10 @@ use Illuminate\Http\JsonResponse;
 final class ListOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var SystemRepositoryInterface $systemRepository
+     */
     private SystemRepositoryInterface $systemRepository;
 
     /**

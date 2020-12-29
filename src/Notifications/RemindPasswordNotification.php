@@ -11,6 +11,10 @@ final class RemindPasswordNotification extends AbstractNotification implements S
 {
     use Queueable;
 
+    /**
+     *
+     * @var string $token
+     */
     private string $token;
 
     /**

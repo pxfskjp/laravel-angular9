@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Gate;
 final class StoreOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var UserRepositoryInterface $userRepository
+     */
     private UserRepositoryInterface $userRepository;
 
     /**

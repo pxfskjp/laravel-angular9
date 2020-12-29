@@ -1,18 +1,27 @@
 <?php
+
 namespace App\Repositories\User;
 
 use App\Data\Models\User;
+use App\Exceptions\BadRequestException;
 use App\Repositories\Interfaces\User\AuthRepositoryInterface;
 use Tymon\JWTAuth\JWTAuth;
-use App\Exceptions\BadRequestException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Contracts\Providers\JWT as JWTProvider;
 
 final class AuthRepository implements AuthRepositoryInterface
 {
 
+    /**
+     *
+     * @var JWTAuth $auth
+     */
     private JWTAuth $auth;
 
+    /**
+     *
+     * @var JWTProvider $provider
+     */
     private JWTProvider $provider;
 
     /**

@@ -11,6 +11,10 @@ final class CreateAccountNotification extends AbstractNotification implements Sh
 {
     use Queueable;
 
+    /**
+     *
+     * @var string $password
+     */
     private string $password;
 
     /**

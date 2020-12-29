@@ -19,6 +19,10 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var SystemRepositoryInterface $systemRepository
+     */
     private SystemRepositoryInterface $systemRepository;
 
     /**

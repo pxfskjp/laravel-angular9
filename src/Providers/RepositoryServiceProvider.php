@@ -45,6 +45,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(
             static::REPOSITORY_NAMESPACE . '\Interfaces' . $nameSpace . 'Interface',
-            static::REPOSITORY_NAMESPACE . $nameSpace);
+            static::REPOSITORY_NAMESPACE . $nameSpace
+        );
     }
 }

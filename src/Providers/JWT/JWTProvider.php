@@ -47,6 +47,12 @@ final class JWTProvider implements JWT
 
     /**
      *
+     * @var string $key
+     */
+    private $key;
+
+    /**
+     *
      * @param Token $jwtToken
      * @param Signer $signer
      * @param TokenRepositoryInterface $tokenRepository
@@ -137,11 +143,13 @@ final class JWTProvider implements JWT
             throw new TokenInvalidException('Token not in whitelist');
         }
         if (isset($payload['nbf']) && $payload['nbf'] > $timestamp) {
-            throw new TokenInvalidException('Cannot handle token prior to ' . Carbon::parse($payload['nbf'])->format('Y-m-d H:i:s'));
+            throw new TokenInvalidException('Cannot handle token prior to '
+                . Carbon::parse($payload['nbf'])->format('Y-m-d H:i:s'));
         }
 
         if (isset($payload['iat']) && $payload['iat'] > $timestamp) {
-            throw new TokenInvalidException('Cannot handle token prior to ' . Carbon::parse($payload['iat'])->format('Y-m-d H:i:s'));
+            throw new TokenInvalidException('Cannot handle token prior to '
+                . Carbon::parse($payload['iat'])->format('Y-m-d H:i:s'));
         }
         if (isset($payload['exp']) && $timestamp >= $payload['exp']) {
             throw new TokenExpiredException('Expired token');
@@ -166,10 +174,10 @@ final class JWTProvider implements JWT
 
     /**
      *
-     * @param string $data
-     * @return string
+     * @param mixed $data
+     * @return mixed
      */
-    private function base64Encode(string $data): string
+    private function base64Encode($data)
     {
         return \str_replace('=', '', strtr(base64_encode($data), '+/', '-_'));
     }
@@ -177,9 +185,9 @@ final class JWTProvider implements JWT
     /**
      *
      * @param string $data
-     * @return string
+     * @return mixed
      */
-    private function base64Decode(string $data): string
+    private function base64Decode(string $data)
     {
         if ($remainder = \strlen($data) % 4) {
             $data .= \str_repeat('=', 4 - $remainder);

@@ -7,8 +7,9 @@ Autoryzacja API - JWT token
 Dostęp do dokumentacji API (swagger): <host>/api/documentation  
   
 Ostatnie zmiany:  
-php7.4 (typowanie zmiennych i funkcje strzałkowe)
-
+php7.4 (typowanie zmiennych i funkcje strzałkowe)  
+update do Laravel 8  
+  
 ## Autor
 
 Jacek Sławiński  

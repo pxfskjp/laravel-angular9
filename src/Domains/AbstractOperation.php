@@ -3,10 +3,10 @@
 namespace App\Domains;
 
 use App\Http\Responses\RespondValidationErrorsJson;
+use App\Http\Responses\ResponseJsonTrait;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\App;
-use App\Http\Responses\ResponseJsonTrait;
 
 abstract class AbstractOperation implements OperationInterface
 {

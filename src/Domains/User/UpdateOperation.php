@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Gate;
 final class UpdateOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var UserRepositoryInterface $userRepository
+     */
     private UserRepositoryInterface $userRepository;
 
     /**

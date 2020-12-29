@@ -18,6 +18,10 @@ use Illuminate\Support\Facades\Gate;
 final class DeleteOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var TransferRepositoryInterface $transferRepository
+     */
     private TransferRepositoryInterface $transferRepository;
 
     /**

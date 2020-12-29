@@ -17,6 +17,10 @@ use Illuminate\Support\Facades\Gate;
 final class DeleteOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var UserRepositoryInterface $userRepository
+     */
     private UserRepositoryInterface $userRepository;
 
     /**

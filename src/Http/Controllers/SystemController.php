@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Data\Models\User;
-use App\Domains\System\{
-    DeleteOperation,
-    ListOperation,
-    StoreOperation,
-    UpdateOperation
-};
+use App\Domains\System\DeleteOperation;
+use App\Domains\System\ListOperation;
+use App\Domains\System\StoreOperation;
+use App\Domains\System\UpdateOperation;
 use Illuminate\Http\JsonResponse;
 
 final class SystemController extends Controller

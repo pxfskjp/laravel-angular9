@@ -21,12 +21,28 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 final class RefreshTokenOperation extends AbstractOperation
 {
 
+    /**
+     *
+     * @var AuthRepositoryInterface $authRepository
+     */
     private AuthRepositoryInterface $authRepository;
 
+    /**
+     *
+     * @var UserRepositoryInterface $userRepository
+     */
     private UserRepositoryInterface $userRepository;
 
+    /**
+     *
+     * @var TokenRepositoryInterface $tokenRepository
+     */
     private TokenRepositoryInterface $tokenRepository;
 
+    /**
+     *
+     * @var User $user
+     */
     private User $user;
 
     /**
@@ -38,7 +54,8 @@ final class RefreshTokenOperation extends AbstractOperation
     public function __construct(
         AuthRepositoryInterface $authRepository,
         UserRepositoryInterface $userRepository,
-        TokenRepositoryInterface $tokenRepository)
+        TokenRepositoryInterface $tokenRepository
+    )
     {
         $this->authRepository = $authRepository;
         $this->userRepository = $userRepository;
@@ -70,7 +87,11 @@ final class RefreshTokenOperation extends AbstractOperation
             return $this->runResponse(new RespondSuccessJson(
                 'success',
                 [
-                    'accessToken' => $this->authRepository->attemptFromUser($this->user, $secret, Token::getAccessTtl()),
+                    'accessToken' => $this->authRepository->attemptFromUser(
+                        $this->user,
+                        $secret,
+                        Token::getAccessTtl()
+                    ),
                     'refreshToken' => $this->authRepository->createJwtToken($secret, Token::getRefreshTtl()),
                     'email' => $this->user->email
                 ]
