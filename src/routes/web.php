@@ -32,4 +32,3 @@ Route::post('password-save', 'AuthController@savePassword')->name('password.save
 Route::fallback(function () {
     throw new RouteNotFoundException('Błędny url');
 });
-

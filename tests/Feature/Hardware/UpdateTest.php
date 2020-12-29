@@ -87,7 +87,6 @@ class UpdateTest extends ApiTestCase
             'message',
             'result'
         ]);
-
     }
 
     /**

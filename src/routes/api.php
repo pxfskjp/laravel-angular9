@@ -47,4 +47,3 @@ Route::group(['prefix' => 'transfer'], function () {
 Route::fallback(function () {
     throw new RouteNotFoundException('Błędny url');
 });
-

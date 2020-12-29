@@ -55,8 +55,7 @@ final class RefreshTokenOperation extends AbstractOperation
         AuthRepositoryInterface $authRepository,
         UserRepositoryInterface $userRepository,
         TokenRepositoryInterface $tokenRepository
-    )
-    {
+    ) {
         $this->authRepository = $authRepository;
         $this->userRepository = $userRepository;
         $this->tokenRepository = $tokenRepository;
@@ -95,7 +94,7 @@ final class RefreshTokenOperation extends AbstractOperation
                     'refreshToken' => $this->authRepository->createJwtToken($secret, Token::getRefreshTtl()),
                     'email' => $this->user->email
                 ]
-                ));
+            ));
         } catch (BadRequestException | ModelNotFoundException $e) {
             return $this->runResponse(new RespondBadRequestJson());
         } catch (TokenExpiredException | TokenInvalidException $e) {

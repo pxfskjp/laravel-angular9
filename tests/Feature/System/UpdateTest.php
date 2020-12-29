@@ -8,7 +8,6 @@ use Illuminate\Foundation\Testing\WithFaker;
 use Symfony\Component\HttpFoundation\Response;
 use Tests\ApiTestCase;
 
-
 /**
  *
  * @group api

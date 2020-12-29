@@ -76,7 +76,7 @@ class StoreTest extends ApiTestCase
     public function storeSuccess(): void
     {
         $user = $this->setLoggedUser('qwerty123');
-        $token = $this->setJwtToken($user,'qwerty123');
+        $token = $this->setJwtToken($user, 'qwerty123');
         $repository = Mockery::mock(HardwareRepositoryInterface::class);
         $repository->shouldReceive('store')
             ->with([

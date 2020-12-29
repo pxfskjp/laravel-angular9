@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests\Hooks;
 
 use DG\BypassFinals;

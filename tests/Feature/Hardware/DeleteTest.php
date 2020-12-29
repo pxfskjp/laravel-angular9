@@ -66,7 +66,13 @@ class DeleteTest extends ApiTestCase
     {
         $token = $this->setAdminAndJwtToken();
         $hardware = factory(Hardware::class)->create();
-        $response = $this->deleteRequest($this->apiRoute, ['id' => $hardware->id], $this->getBearerHeader($token . 'a'));
+        $response = $this->deleteRequest(
+            $this->apiRoute,
+            [
+                'id' => $hardware->id
+            ],
+            $this->getBearerHeader($token . 'a')
+        );
         $response->assertStatus(Response::HTTP_FORBIDDEN);
     }
 

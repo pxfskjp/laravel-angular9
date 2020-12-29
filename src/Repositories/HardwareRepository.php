@@ -20,7 +20,8 @@ final class HardwareRepository implements HardwareRepositoryInterface
             [
                 'system',
                 'user'
-            ])
+            ]
+        )
             ->get();
     }
 
@@ -33,10 +34,12 @@ final class HardwareRepository implements HardwareRepositoryInterface
     {
         $hardware = Hardware::create($attributes);
         if (! empty($attributes['system_id'])) {
-            $hardware->system()->create(
-                [
-                    'system_id' => $attributes['system_id']
-                ]);
+            $hardware->system()
+                ->create(
+                    [
+                        'system_id' => $attributes['system_id']
+                    ]
+                );
             $hardware->load('system');
         }
         return $hardware;

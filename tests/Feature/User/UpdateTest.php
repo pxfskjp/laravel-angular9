@@ -2,22 +2,17 @@
 
 namespace Tests\Feature\User;
 
+use App\Data\Models\User;
+use Carbon\Carbon;
+use Illuminate\Foundation\Testing\WithFaker;
+use Symfony\Component\HttpFoundation\Response;
+use Tests\ApiTestCase;
+
 /**
  *
  * @group api
  * @group UserController
  */
-use App\Data\Models\User;
-use App\Http\Responses\RespondForbiddenJson;
-use App\Http\Responses\RespondSuccessJson;
-use App\Http\Responses\RespondUnauthorizedJson;
-use App\Http\Responses\RespondValidationErrorsJson;
-use Carbon\Carbon;
-use Illuminate\Foundation\Testing\WithFaker;
-use Symfony\Component\HttpFoundation\Response;
-use Tests\ApiTestCase;
-use App\Http\Responses\RespondBadRequestJson;
-
 class UpdateTest extends ApiTestCase
 {
     use WithFaker;

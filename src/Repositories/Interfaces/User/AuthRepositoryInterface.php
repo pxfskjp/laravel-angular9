@@ -46,4 +46,3 @@ interface AuthRepositoryInterface
      */
     public function getUserIdFromRefreshToken(string $refreshToken): int;
 }
-

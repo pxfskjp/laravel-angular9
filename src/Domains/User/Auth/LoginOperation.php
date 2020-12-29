@@ -51,7 +51,7 @@ final class LoginOperation extends AbstractOperation
         $secret = Token::buildNewSecret();
         $accessToken = $this->authRepository->authAttempt($loginData, $secret, Token::getAccessTtl());
         if (empty($accessToken)) {
-           return $this->runResponse(new RespondForbiddenJson());
+            return $this->runResponse(new RespondForbiddenJson());
         }
         $user = $this->authRepository->getAuthUser();
         $this->tokenRepository->saveToken(

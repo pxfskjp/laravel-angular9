@@ -1,4 +1,5 @@
 <?php
+
 namespace Tests;
 
 use App\Data\Models\User;
@@ -20,8 +21,12 @@ class ApiTestCase extends AbstractTestCase
      * @param array $headers
      * @return TestResponse
      */
-    protected function postRequest(string $routeName, array $routeParams = [], array $data = [], array $headers = []): TestResponse
-    {
+    protected function postRequest(
+        string $routeName,
+        array $routeParams = [],
+        array $data = [],
+        array $headers = []
+    ): TestResponse {
         return $this->post($this->routeApi($routeName, $routeParams), $data, $headers);
     }
 
@@ -45,8 +50,12 @@ class ApiTestCase extends AbstractTestCase
      * @param array $headers
      * @return TestResponse
      */
-    protected function patchRequest(string $routeName, array $routeParams = [], array $data = [], array $headers = []): TestResponse
-    {
+    protected function patchRequest(
+        string $routeName,
+        array $routeParams = [],
+        array $data = [],
+        array $headers = []
+    ): TestResponse {
         return $this->patch($this->routeApi($routeName, $routeParams), $data, $headers);
     }
 
@@ -58,8 +67,12 @@ class ApiTestCase extends AbstractTestCase
      * @param array $headers
      * @return TestResponse
      */
-    protected function putRequest(string $routeName, array $routeParams = [], array $data = [], array $headers = []): TestResponse
-    {
+    protected function putRequest(
+        string $routeName,
+        array $routeParams = [],
+        array $data = [],
+        array $headers = []
+    ): TestResponse {
         return $this->put($this->routeApi($routeName, $routeParams), $data, $headers);
     }
 
@@ -70,7 +83,7 @@ class ApiTestCase extends AbstractTestCase
      * @param array $headers
      * @return TestResponse
      */
-    protected function deleteRequest(string $routeName, array $routeParams = [], array $headers = []):TestResponse
+    protected function deleteRequest(string $routeName, array $routeParams = [], array $headers = []): TestResponse
     {
         return $this->delete($this->routeApi($routeName, $routeParams), [], $headers);
     }
@@ -124,7 +137,8 @@ class ApiTestCase extends AbstractTestCase
                     'password' => $password,
                 ],
                 $secret,
-                Token::getAccessTtl());
+                Token::getAccessTtl()
+            );
     }
 
     /**

@@ -10,3 +10,4 @@
 /storage/logs/*
 /bootstrap/cache/*.php
 /spreadshet.json
+/.phpunit.result.cache
