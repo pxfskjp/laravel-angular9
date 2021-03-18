@@ -1,16 +1,2 @@
-## Przykład kodu Laravel + Angular
+## laravel7 and angular 9
 
-Przykład bardzo prostej aplikacji do zarządzania komputerami.  
-Po stronie backend - Laravel 7  
-Po stronie frontend - Angular 9  
-Autoryzacja API - JWT token  
-Dostęp do dokumentacji API (swagger): <host>/api/documentation  
-  
-Ostatnie zmiany:  
-php7.4 (typowanie zmiennych i funkcje strzałkowe)  
-update do Laravel 8  
-  
-## Autor
-
-Jacek Sławiński  
-js@jacekslawinski.pl  
